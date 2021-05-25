@@ -37,20 +37,24 @@ public class Fractal extends JFrame {
         g2.setStroke(new BasicStroke((float) diametro));
         g2.drawLine(x1, y1, x2, y2);
         
-        double ag = angulo/2;
-        for (int i = 0; i < (ramas/2); i++) {
-            drawTree(g, x2, y2, angle - ag, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
+        double ag = angulo*((int)(ramas/2));
+        for (int i = 0; i < (ramas); i++) {
+            
             drawTree(g, x2, y2, angle + ag, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
             
-            ag = ag + ag;    
-            
+            if(ramas%2 != 0){
+               ag = ag - (angulo); 
+            }
+            else{
+               ag = ag - (angulo*2); 
+            }
         }
     }
  
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
-        drawTree(g, 800, 1000, -90, 7, 20, 10, 35, 15, 60, 3);
+        drawTree(g, 800, 1000, -90, 4, 30, 14, 35, 15, 30, 3);
     }
  
     public static void main(String[] args) {
