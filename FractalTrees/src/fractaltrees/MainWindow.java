@@ -34,6 +34,7 @@ public class MainWindow extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         profundidadField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -50,6 +51,7 @@ public class MainWindow extends javax.swing.JFrame {
         decrementoLField = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         diametroField = new javax.swing.JTextField();
+        backgroundLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,57 +68,70 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Algoritmo Genético", jPanel1);
 
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         profundidadField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profundidadFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(profundidadField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 248, 151, 34));
+        jPanel3.add(profundidadField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 248, 151, 34));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Profundidad de árbol");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 228, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 228, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ángulo de Ramificaciones");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 134, -1, -1));
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 134, -1, -1));
 
         anguloField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 anguloFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(anguloField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 154, 151, 34));
+        jPanel3.add(anguloField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 154, 151, 34));
 
         ramificacionesField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ramificacionesFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(ramificacionesField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 67, 151, 34));
+        jPanel3.add(ramificacionesField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 67, 151, 34));
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("N° de Ramificaciones");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 47, -1, -1));
+        jPanel3.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 47, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Longitud de Tronco");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 322, -1, -1));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 322, -1, -1));
 
         longitudField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 longitudFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(longitudField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 342, 151, 34));
+        jPanel3.add(longitudField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 342, 151, 34));
 
         decrementoDField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 decrementoDFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(decrementoDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 151, 34));
+        jPanel3.add(decrementoDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 151, 34));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Proporción de decremento de diametro inicial del tronco");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
 
         generateButton.setText("Crecer Árbol");
         generateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -124,31 +139,40 @@ public class MainWindow extends javax.swing.JFrame {
                 generateButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(generateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
+        jPanel3.add(generateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
 
         TreeContainer.setPreferredSize(new java.awt.Dimension(600, 600));
         TreeContainer.setLayout(new java.awt.BorderLayout());
-        jPanel2.add(TreeContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 600, 600));
+        jPanel3.add(TreeContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 600, 600));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Proporción de decremento de longitud inicial del tronco");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
 
         decrementoLField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 decrementoLFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(decrementoLField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 151, 34));
+        jPanel3.add(decrementoLField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 151, 34));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Diametro de Tronco");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, -1, -1));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, -1, -1));
 
         diametroField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 diametroFieldActionPerformed(evt);
             }
         });
-        jPanel2.add(diametroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 151, 34));
+        jPanel3.add(diametroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 151, 34));
+
+        backgroundLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fractaltrees/Images/maxresdefault.jpg"))); // NOI18N
+        jPanel3.add(backgroundLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1140, 680));
+
+        jPanel2.add(jPanel3, java.awt.BorderLayout.CENTER);
 
         jTabbedPane1.addTab("Generación De Arboles", jPanel2);
 
@@ -246,6 +270,7 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TreeContainer;
     private javax.swing.JTextField anguloField;
+    private javax.swing.JLabel backgroundLabel;
     private javax.swing.JTextField decrementoDField;
     private javax.swing.JTextField decrementoLField;
     private javax.swing.JTextField diametroField;
@@ -259,6 +284,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField longitudField;
     private javax.swing.JTextField profundidadField;
