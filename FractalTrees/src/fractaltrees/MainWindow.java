@@ -16,6 +16,10 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+        /*
+        Fractal generatedTree = new Fractal();
+        this.TreeContainer.add(generatedTree);
+        */
     }
 
     /**
@@ -27,21 +31,182 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        profundidadField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        anguloField = new javax.swing.JTextField();
+        ramificacionesField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        longitudField = new javax.swing.JTextField();
+        decrementoDField = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        generateButton = new javax.swing.JButton();
+        TreeContainer = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        decrementoLField = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        diametroField = new javax.swing.JTextField();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1132, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 664, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Algoritmo Genético", jPanel1);
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        profundidadField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                profundidadFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(profundidadField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 248, 151, 34));
+
+        jLabel3.setText("Profundidad de árbol");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 228, -1, -1));
+
+        jLabel2.setText("Ángulo de Ramificaciones");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 134, -1, -1));
+
+        anguloField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anguloFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(anguloField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 154, 151, 34));
+
+        ramificacionesField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ramificacionesFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(ramificacionesField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 67, 151, 34));
+
+        jLabel1.setText("N° de Ramificaciones");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 47, -1, -1));
+
+        jLabel4.setText("Longitud de Tronco");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 322, -1, -1));
+
+        longitudField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                longitudFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(longitudField, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 342, 151, 34));
+
+        decrementoDField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decrementoDFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(decrementoDField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 151, 34));
+
+        jLabel5.setText("Proporción de decremento de diametro inicial del tronco");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, -1));
+
+        generateButton.setText("Crecer Árbol");
+        generateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateButtonActionPerformed(evt);
+            }
+        });
+        jPanel2.add(generateButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
+
+        TreeContainer.setPreferredSize(new java.awt.Dimension(600, 600));
+        TreeContainer.setLayout(new java.awt.BorderLayout());
+        jPanel2.add(TreeContainer, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 600, 600));
+
+        jLabel6.setText("Proporción de decremento de longitud inicial del tronco");
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, -1, -1));
+
+        decrementoLField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decrementoLFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(decrementoLField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, 151, 34));
+
+        jLabel7.setText("Diametro de Tronco");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, -1, -1));
+
+        diametroField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diametroFieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(diametroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 600, 151, 34));
+
+        jTabbedPane1.addTab("Generación De Arboles", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 665, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ramificacionesFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ramificacionesFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ramificacionesFieldActionPerformed
+
+    private void anguloFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anguloFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anguloFieldActionPerformed
+
+    private void profundidadFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profundidadFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_profundidadFieldActionPerformed
+
+    private void longitudFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_longitudFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_longitudFieldActionPerformed
+
+    private void decrementoDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decrementoDFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decrementoDFieldActionPerformed
+
+    private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
+        // TODO add your handling code here:
+        this.TreeContainer.removeAll();
+        this.TreeContainer.revalidate();
+        this.TreeContainer.repaint();
+        Fractal generatedTree = new Fractal(Integer.valueOf(this.profundidadField.getText()), Double.parseDouble(this.decrementoLField.getText()),Double.parseDouble(this.longitudField.getText()),Double.parseDouble(this.decrementoDField.getText()), Double.parseDouble(this.diametroField.getText()),Double.parseDouble(this.anguloField.getText()),Integer.valueOf(this.ramificacionesField.getText()));
+        this.TreeContainer.add(generatedTree);
+        this.TreeContainer.setVisible(true);
+    }//GEN-LAST:event_generateButtonActionPerformed
+
+    private void decrementoLFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decrementoLFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_decrementoLFieldActionPerformed
+
+    private void diametroFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diametroFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_diametroFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +244,24 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel TreeContainer;
+    private javax.swing.JTextField anguloField;
+    private javax.swing.JTextField decrementoDField;
+    private javax.swing.JTextField decrementoLField;
+    private javax.swing.JTextField diametroField;
+    private javax.swing.JButton generateButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField longitudField;
+    private javax.swing.JTextField profundidadField;
+    private javax.swing.JTextField ramificacionesField;
     // End of variables declaration//GEN-END:variables
 }

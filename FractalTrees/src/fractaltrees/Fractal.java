@@ -14,18 +14,33 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
  
-public class Fractal extends JFrame {
- 
-    public Fractal() {
-        super("Fractal Tree");
-        setBounds(100, 100, 1600, 1200);
-        setResizable(false);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+public class Fractal extends JComponent {
+
+    private int nivel;
+    private double decrecimientoL;
+    private double longitud;
+    private double decrecimientoD;
+    private double diametro;
+    private double angulo;
+    private int ramas;
+
+    public Fractal(int nivel, double decrecimientoL, double longitud, double decrecimientoD, double diametro, double angulo, int ramas) {
+        this.nivel = nivel;
+        this.decrecimientoL = decrecimientoL;
+        this.longitud = longitud;
+        this.decrecimientoD = decrecimientoD;
+        this.diametro = diametro;
+        this.angulo = angulo;
+        this.ramas = ramas;
     }
- 
+    
+    
     private void drawTree(Graphics g, int x1, int y1, double angle, int nivel, double decrecimientoL, double longitud, double decrecimientoD, double diametro, double angulo, int ramas) {
         Graphics2D g2 = (Graphics2D)g; 
         if (nivel <= 0) return;
@@ -54,11 +69,20 @@ public class Fractal extends JFrame {
     @Override
     public void paint(Graphics g) {
         g.setColor(Color.BLACK);
-        drawTree(g, 800, 1000, -90, 4, 30, 14, 35, 15, 30, 3);
+        drawTree(g, 300, 580, -90, this.nivel, this.decrecimientoL, this.longitud, this.decrecimientoD, this.diametro, this.angulo, this.ramas);
     }
- 
+    /*
     public static void main(String[] args) {
-        new Fractal().setVisible(true);
+        // TODO code application logic here
+        JFrame frame =new JFrame();
+        frame.setSize(600,600);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ 
+        Fractal generatedTree = new Fractal();
+        frame.add(generatedTree);
+        frame.setVisible(true); 
+        
     }
+    */
 }
 

@@ -16,6 +16,8 @@ public class FractalTrees {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        MainWindow pantalla = new MainWindow();
+        pantalla.setVisible(true); 
     }
     
 }
