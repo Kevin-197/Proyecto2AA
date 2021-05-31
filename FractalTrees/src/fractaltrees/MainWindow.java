@@ -5,6 +5,8 @@
  */
 package fractaltrees;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author eidur
@@ -31,8 +33,39 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        shiftTrees = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        CardPanel = new javax.swing.JPanel();
+        startGenPanel = new javax.swing.JPanel();
+        silhouetteFrame = new javax.swing.JInternalFrame();
+        silhouetteChooser = new javax.swing.JFileChooser();
+        jButton1 = new javax.swing.JButton();
+        urlLabel = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        individuoField = new javax.swing.JTextField();
+        fileChooser = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        genField = new javax.swing.JTextField();
+        CheckGenerations = new javax.swing.JPanel();
+        MainRadioButton = new javax.swing.JRadioButton();
+        parent1RadioButton = new javax.swing.JRadioButton();
+        parent2RadioButton = new javax.swing.JRadioButton();
+        TreeContainer2 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        VolverButton = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         profundidadField = new javax.swing.JTextField();
@@ -55,16 +88,160 @@ public class MainWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1132, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 664, Short.MAX_VALUE)
-        );
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        CardPanel.setOpaque(false);
+        CardPanel.setLayout(new java.awt.CardLayout());
+
+        startGenPanel.setOpaque(false);
+        startGenPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        silhouetteFrame.setVisible(false);
+        silhouetteFrame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        silhouetteChooser.setCurrentDirectory(new java.io.File("D:\\users\\eidur\\Desktop\\analisis de algoritmos\\ne\\Proyecto2AA\\FractalTrees\\src\\fractaltrees\\Silhouettes"));
+        silhouetteChooser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        silhouetteChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                silhouetteChooserActionPerformed(evt);
+            }
+        });
+        silhouetteFrame.getContentPane().add(silhouetteChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        startGenPanel.add(silhouetteFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 590, 420));
+
+        jButton1.setText("Crecer Bosque");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        startGenPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 510, 210, 50));
+
+        urlLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        urlLabel.setForeground(new java.awt.Color(240, 240, 240));
+        startGenPanel.add(urlLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 370, 30));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel20.setText("Individuos por Generación:");
+        startGenPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
+        startGenPanel.add(individuoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 80, 40));
+
+        fileChooser.setText("Escoger");
+        fileChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileChooserActionPerformed(evt);
+            }
+        });
+        startGenPanel.add(fileChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, -1, 30));
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel21.setText("Silueta:");
+        startGenPanel.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel22.setText("Generaciones totales:");
+        startGenPanel.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, -1, -1));
+        startGenPanel.add(genField, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 80, 40));
+
+        CardPanel.add(startGenPanel, "card1");
+
+        CheckGenerations.setOpaque(false);
+        CheckGenerations.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        shiftTrees.add(MainRadioButton);
+        MainRadioButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        MainRadioButton.setForeground(new java.awt.Color(255, 255, 255));
+        MainRadioButton.setSelected(true);
+        MainRadioButton.setText("Main Tree");
+        CheckGenerations.add(MainRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 110, -1));
+
+        shiftTrees.add(parent1RadioButton);
+        parent1RadioButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        parent1RadioButton.setForeground(new java.awt.Color(255, 255, 255));
+        parent1RadioButton.setText("Parent 1");
+        CheckGenerations.add(parent1RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 110, -1));
+
+        shiftTrees.add(parent2RadioButton);
+        parent2RadioButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        parent2RadioButton.setForeground(new java.awt.Color(255, 255, 255));
+        parent2RadioButton.setText("Parent 2");
+        CheckGenerations.add(parent2RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 110, -1));
+
+        TreeContainer2.setPreferredSize(new java.awt.Dimension(600, 600));
+        TreeContainer2.setLayout(new java.awt.BorderLayout());
+        CheckGenerations.add(TreeContainer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 600, 600));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generación 1", "Generación 2", "Generación 3", "Generación 4" }));
+        CheckGenerations.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 130, 30));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Tiempo de ejecución:");
+        CheckGenerations.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 180, 30));
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Cromosomas");
+        CheckGenerations.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 110, 30));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Niveles:");
+        CheckGenerations.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 60, 30));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Ramas:");
+        CheckGenerations.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 60, 30));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Ángulo:");
+        CheckGenerations.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 60, 30));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Longitud Tronco:");
+        CheckGenerations.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 120, 30));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Diametro Tronco:");
+        CheckGenerations.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 120, 30));
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Decremento Diametro:");
+        CheckGenerations.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 150, 30));
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Decremento Longitud:");
+        CheckGenerations.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 150, 30));
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Resultado de adaptabilidad");
+        CheckGenerations.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 180, 30));
+
+        VolverButton.setText("Volver");
+        VolverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverButtonActionPerformed(evt);
+            }
+        });
+        CheckGenerations.add(VolverButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 30));
+
+        CardPanel.add(CheckGenerations, "card2");
+
+        jPanel1.add(CardPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 670));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fractaltrees/Images/f95k8qqcvu331.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 670));
 
         jTabbedPane1.addTab("Algoritmo Genético", jPanel1);
 
@@ -232,6 +409,29 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_diametroFieldActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        CardLayout escenarios = (CardLayout)CardPanel.getLayout();
+        escenarios.show(CardPanel,"card2" );
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void VolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout escenarios = (CardLayout)CardPanel.getLayout();
+        escenarios.show(CardPanel,"card1" );
+    }//GEN-LAST:event_VolverButtonActionPerformed
+
+    private void fileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooserActionPerformed
+        // TODO add your handling code here:
+        this.silhouetteFrame.setVisible(true);
+    }//GEN-LAST:event_fileChooserActionPerformed
+
+    private void silhouetteChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_silhouetteChooserActionPerformed
+        // TODO add your handling code here:
+        this.silhouetteFrame.setVisible(false);
+         this.urlLabel.setText(this.silhouetteChooser.getSelectedFile().getAbsolutePath());
+    }//GEN-LAST:event_silhouetteChooserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,26 +468,57 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel CardPanel;
+    private javax.swing.JPanel CheckGenerations;
+    private javax.swing.JRadioButton MainRadioButton;
     private javax.swing.JPanel TreeContainer;
+    private javax.swing.JPanel TreeContainer2;
+    private javax.swing.JButton VolverButton;
     private javax.swing.JTextField anguloField;
     private javax.swing.JLabel backgroundLabel;
     private javax.swing.JTextField decrementoDField;
     private javax.swing.JTextField decrementoLField;
     private javax.swing.JTextField diametroField;
+    private javax.swing.JButton fileChooser;
+    private javax.swing.JTextField genField;
     private javax.swing.JButton generateButton;
+    private javax.swing.JTextField individuoField;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField longitudField;
+    private javax.swing.JRadioButton parent1RadioButton;
+    private javax.swing.JRadioButton parent2RadioButton;
     private javax.swing.JTextField profundidadField;
     private javax.swing.JTextField ramificacionesField;
+    private javax.swing.ButtonGroup shiftTrees;
+    private javax.swing.JFileChooser silhouetteChooser;
+    private javax.swing.JInternalFrame silhouetteFrame;
+    private javax.swing.JPanel startGenPanel;
+    private javax.swing.JLabel urlLabel;
     // End of variables declaration//GEN-END:variables
 }
