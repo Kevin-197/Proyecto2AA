@@ -52,16 +52,23 @@ public class Fractal extends JComponent {
         g2.setStroke(new BasicStroke((float) diametro));
         g2.drawLine(x1, y1, x2, y2);
         
-        double ag = angulo*((int)(ramas/2));
-        for (int i = 0; i < (ramas); i++) {
-            
-            drawTree(g, x2, y2, angle + ag, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
-            
-            if(ramas%2 != 0){
-               ag = ag - (angulo); 
+        if(ramas == 1){
+            drawTree(g, x2, y2, angle, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
+        }
+        else{
+            double ag = angulo;
+            if(ramas%2 == 0){
+                ag = angulo/2;
             }
-            else{
-               ag = ag - (angulo*2); 
+            for (int i = 0; i < (ramas/2); i++){
+
+                drawTree(g, x2, y2, angle + ag, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
+                drawTree(g, x2, y2, angle - ag, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
+                if(ramas%2 != 0){
+                    drawTree(g, x2, y2, angle, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
+                }
+
+                ag = ag + (angulo); 
             }
         }
     }
