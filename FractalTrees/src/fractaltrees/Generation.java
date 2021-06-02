@@ -39,36 +39,42 @@ public class Generation {
         System.out.println("Binartio1: "+binario1+" Bin 2: "+ binario2);
         */
         String result = String.format("%3s", Integer.toBinaryString(toConvert.getNivel())).replaceAll(" ", "0")+ // nivel
-        String.format("%6s", Integer.toBinaryString((int) toConvert.getDecrecimientoL())).replaceAll(" ", "0")+ // decrecimientoL
+        String.format("%6s", Integer.toBinaryString((int) toConvert.getDecrecimientoL()[0])).replaceAll(" ", "0")+ // decrecimientoL
         String.format("%4s", Integer.toBinaryString((int) toConvert.getLongitud())).replaceAll(" ", "0")+ //longitud
-        String.format("%6s", Integer.toBinaryString((int) toConvert.getDecrecimientoD())).replaceAll(" ", "0")+// decrecimientoD
+        String.format("%6s", Integer.toBinaryString((int) toConvert.getDecrecimientoD()[0])).replaceAll(" ", "0")+// decrecimientoD
         String.format("%4s", Integer.toBinaryString((int) toConvert.getDiametro())).replaceAll(" ", "0")+ //diametro
-        String.format("%6s", Integer.toBinaryString((int) toConvert.getAngulo())).replaceAll(" ", "0")+ //angulo
-        String.format("%3s", Integer.toBinaryString(toConvert.getRamas())).replaceAll(" ", "0"); //ramas
+        String.format("%6s", Integer.toBinaryString((int) toConvert.getAngulo()[0])).replaceAll(" ", "0")+ //angulo
+        String.format("%3s", Integer.toBinaryString(toConvert.getRamas()[0])).replaceAll(" ", "0"); //ramas
 
         return result;
 
     }
     static public Fractal BinaryToTree(String toConvert){
 
-        return new Fractal(Integer.parseInt(toConvert.substring(0, 3),2),Integer.parseInt(toConvert.substring(3, 9),2),Integer.parseInt(toConvert.substring(9, 13),2),Integer.parseInt(toConvert.substring(13, 19),2),Integer.parseInt(toConvert.substring(19, 23),2),Integer.parseInt(toConvert.substring(23, 29),2),Integer.parseInt(toConvert.substring(29, 32),2));
+        return new Fractal(Integer.parseInt(toConvert.substring(0, 3),2),
+                new double[] {(Integer.parseInt(toConvert.substring(3, 9),2)),Integer.parseInt(toConvert.substring(3, 9),2) },
+                Integer.parseInt(toConvert.substring(9, 13),2),
+                new double[] {Integer.parseInt(toConvert.substring(13, 19),2),Integer.parseInt(toConvert.substring(13, 19),2)},
+                Integer.parseInt(toConvert.substring(19, 23),2),
+                new double[] {Integer.parseInt(toConvert.substring(23, 29),2), Integer.parseInt(toConvert.substring(23, 29),2)},
+                new int[] {Integer.parseInt(toConvert.substring(29, 32),2),Integer.parseInt(toConvert.substring(29, 32),2)});
 
     }
     public static void main(String[] args) {
         // TODO code application logic here
         //String sty= "Mywar";
         ArrayList<Fractal> Generacion = new ArrayList<Fractal >();
-        Fractal Tree1 = new Fractal(4, 30,14,35, 15,30,23);
+        Fractal Tree1 = new Fractal(4, new double[] {30,30} ,14,new double[]{35,35}, 15,new double[] {30,30},new int[] {23,23});
         Generacion.add(Tree1);
-        Tree1 = new Fractal(5, 28,11,30, 14,33,2);
+        Tree1 = new Fractal(5,  new double[] {28,28},11,  new double[] {30,30}, 14, new double[] {33,33}, new int[] {2,2});
         Generacion.add(Tree1);
-        Tree1 = new Fractal(6, 27,14,27, 15,32,3);
+        Tree1 = new Fractal(6,  new double[] {27,27},14, new double[] {27,27}, 15, new double[] {32,32}, new int[] {3,3});
         Generacion.add(Tree1);
-        Tree1 = new Fractal(7, 30,12,34, 16,30,4);
+        Tree1 = new Fractal(7,  new double[] {30,30},12,  new double[] {34,34}, 16, new double[] {30,30}, new int[] {4,4});
         Generacion.add(Tree1);
-        Tree1 = new Fractal(6, 29,13,33, 13,31,4);
+        Tree1 = new Fractal(6,  new double[] {29,29},13, new double[] {33,33}, 13, new double[] {31,31}, new int[] {4,4});
         Generacion.add(Tree1);
-        Tree1 = new Fractal(4, 28,15,34, 13,32,5);
+        Tree1 = new Fractal(4,  new double[] {28,28},15,  new double[] {34,34}, 13, new double[] {32,32}, new int[] {5,5});
         Generacion.add(Tree1);
         Collections.shuffle(Generacion);
         

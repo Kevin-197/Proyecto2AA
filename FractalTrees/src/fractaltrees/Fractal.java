@@ -29,6 +29,7 @@ public class Fractal extends JComponent {
     private double diametro;
     private double[] angulo;
     private int[] ramas;
+    
 
     public Fractal(int nivel, double[] decrecimientoL, double longitud, double[] decrecimientoD, double diametro, double[] angulo, int[] ramas) {
         this.nivel = nivel;
@@ -38,6 +39,34 @@ public class Fractal extends JComponent {
         this.diametro = diametro;
         this.angulo = angulo;
         this.ramas = ramas;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public double[] getDecrecimientoL() {
+        return decrecimientoL;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public double[] getDecrecimientoD() {
+        return decrecimientoD;
+    }
+
+    public double getDiametro() {
+        return diametro;
+    }
+
+    public double[] getAngulo() {
+        return angulo;
+    }
+
+    public int[] getRamas() {
+        return ramas;
     }
     
     
