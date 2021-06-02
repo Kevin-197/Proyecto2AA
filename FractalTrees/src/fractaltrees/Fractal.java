@@ -23,14 +23,14 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 public class Fractal extends JComponent {
 
     private int nivel;
-    private double decrecimientoL;
+    private double[] decrecimientoL;
     private double longitud;
-    private double decrecimientoD;
+    private double[] decrecimientoD;
     private double diametro;
-    private double angulo;
-    private int ramas;
+    private double[] angulo;
+    private int[] ramas;
 
-    public Fractal(int nivel, double decrecimientoL, double longitud, double decrecimientoD, double diametro, double angulo, int ramas) {
+    public Fractal(int nivel, double[] decrecimientoL, double longitud, double[] decrecimientoD, double diametro, double[] angulo, int[] ramas) {
         this.nivel = nivel;
         this.decrecimientoL = decrecimientoL;
         this.longitud = longitud;
@@ -41,34 +41,33 @@ public class Fractal extends JComponent {
     }
     
     
-    private void drawTree(Graphics g, int x1, int y1, double angle, int nivel, double decrecimientoL, double longitud, double decrecimientoD, double diametro, double angulo, int ramas) {
+    private void drawTree(Graphics g, int x1, int y1, double angle, int nivel, double[] decrecimientoL, double longitud, double[] decrecimientoD, double diametro, double[] angulo, int[] ramas) {
         Graphics2D g2 = (Graphics2D)g; 
         if (nivel <= 0) return;
         int x2 = x1 + (int) (Math.cos(Math.toRadians(angle)) * longitud * 10.0);
         int y2 = y1 + (int) (Math.sin(Math.toRadians(angle)) * longitud * 10.0);
-        
-        diametro = diametro-((decrecimientoD*diametro) / 100);
-        longitud = longitud-((decrecimientoL*longitud) / 100);
+        diametro = diametro-((((new Random()).nextInt((int) ((decrecimientoD[1]-decrecimientoD[0])+1))+decrecimientoD[0])*diametro) / 100);
+        longitud = longitud-((((new Random()).nextInt((int) ((decrecimientoL[1]-decrecimientoL[0])+1))+decrecimientoL[0])*longitud) / 100);
         g2.setStroke(new BasicStroke((float) diametro));
         g2.drawLine(x1, y1, x2, y2);
-        
-        if(ramas == 1){
+        int Cramas = ((new Random()).nextInt((int) ((ramas[1]-ramas[0])+1))+ramas[0]);
+        if(Cramas == 1){
             drawTree(g, x2, y2, angle, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
         }
         else{
-            double ag = angulo;
-            if(ramas%2 == 0){
-                ag = angulo/2;
+            double ag = ((new Random()).nextInt((int) ((angulo[1]-angulo[0])+1))+angulo[0]);
+            if(Cramas%2 == 0){
+                ag = ((new Random()).nextInt((int) ((angulo[1]-angulo[0])+1))+angulo[0])/2;
             }
-            for (int i = 0; i < (ramas/2); i++){
+            for (int i = 0; i < (Cramas/2); i++){
 
                 drawTree(g, x2, y2, angle + ag, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
                 drawTree(g, x2, y2, angle - ag, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
-                if(ramas%2 != 0){
+                if(Cramas%2 != 0){
                     drawTree(g, x2, y2, angle, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
                 }
 
-                ag = ag + (angulo); 
+                ag = ag + (((new Random()).nextInt((int) ((angulo[1]-angulo[0])+1))+angulo[0])); 
             }
         }
     }

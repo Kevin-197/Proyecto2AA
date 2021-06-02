@@ -6,6 +6,7 @@
 package fractaltrees;
 
 import java.awt.CardLayout;
+import java.util.stream.Stream;
 
 /**
  *
@@ -396,7 +397,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.TreeContainer.removeAll();
         this.TreeContainer.revalidate();
         this.TreeContainer.repaint();
-        Fractal generatedTree = new Fractal(Integer.valueOf(this.profundidadField.getText()), Double.parseDouble(this.decrementoLField.getText()),Double.parseDouble(this.longitudField.getText()),Double.parseDouble(this.decrementoDField.getText()), Double.parseDouble(this.diametroField.getText()),Double.parseDouble(this.anguloField.getText()),Integer.valueOf(this.ramificacionesField.getText()));
+        Fractal generatedTree = new Fractal(Integer.valueOf(this.profundidadField.getText()), Stream.of(this.decrementoLField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),Double.parseDouble(this.longitudField.getText()),Stream.of(this.decrementoDField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(), Double.parseDouble(this.diametroField.getText()),Stream.of(this.anguloField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),Stream.of(this.ramificacionesField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray());
         this.TreeContainer.add(generatedTree);
         this.TreeContainer.setVisible(true);
     }//GEN-LAST:event_generateButtonActionPerformed
