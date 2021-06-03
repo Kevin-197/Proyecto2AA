@@ -6,6 +6,9 @@
 package fractaltrees;
 
 import java.awt.CardLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 /**
@@ -394,6 +397,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void generateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateButtonActionPerformed
         // TODO add your handling code here:
+        
         this.TreeContainer.removeAll();
         this.TreeContainer.revalidate();
         this.TreeContainer.repaint();
