@@ -84,6 +84,7 @@ public class Fractal extends JComponent {
     
     private void drawTree(Graphics g,Graphics2D g3, int x1, int y1, double angle, int nivel, double[] decrecimientoL, double longitud, double[] decrecimientoD, double diametro, double[] angulo, int[] ramas) {
         Graphics2D g2 = (Graphics2D)g; 
+        Graphics2D g4 = this.img.createGraphics(); 
         if (nivel <= 0) return;
         int x2 = x1 + (int) (Math.cos(Math.toRadians(angle)) * longitud * 10.0);
         int y2 = y1 + (int) (Math.sin(Math.toRadians(angle)) * longitud * 10.0);
@@ -93,6 +94,9 @@ public class Fractal extends JComponent {
         g3.drawLine(x1, y1, x2, y2);
         g2.setStroke(new BasicStroke((float) diametro));
         g2.drawLine(x1, y1, x2, y2);
+        g4.setStroke(new BasicStroke((float) diametro));
+        g4.drawLine(x1, y1, x2, y2);
+        
         int Cramas = ((new Random()).nextInt((int) ((ramas[1]-ramas[0])+1))+ramas[0]);
         if(Cramas == 1){
             drawTree(g,g3, x2, y2, angle, nivel - 1, decrecimientoL, longitud, decrecimientoD, diametro, angulo, ramas);
