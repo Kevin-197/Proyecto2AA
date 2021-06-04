@@ -25,10 +25,16 @@ public class FractalTrees {
         // TODO code application logic here
         MainWindow pantalla = new MainWindow();
         pantalla.setVisible(true); 
-//        Fractal arbol = new Fractal(4,new double[] {15,25}, 10, new double[] {15,25}, 8, new double[] {15,35}, new int[] {2,4});
-//        String Url2= "Arbol1.bmp";
-//        arbol.paint(arbol.getImgG());
+//        JFrame frame =new JFrame();
+//        frame.setSize(600,600);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        Fractal arbol = new Fractal(5,new double[] {15,25}, 10, new double[] {15,25}, 8, new double[] {25,45}, new int[] {1,5});
+//        frame.add(arbol);
+//        frame.setVisible(true); 
+//        String Url2= "/fractaltrees/Images/Arboles/Arbol1.bmp";
+//        arbol.pintar();
 //        System.out.println(arbol.Fitness(Url2));
+        
     }
     
     

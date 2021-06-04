@@ -402,6 +402,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.TreeContainer.revalidate();
         this.TreeContainer.repaint();
         Fractal generatedTree = new Fractal(Integer.valueOf(this.profundidadField.getText()), Stream.of(this.decrementoLField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),Double.parseDouble(this.longitudField.getText()),Stream.of(this.decrementoDField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(), Double.parseDouble(this.diametroField.getText()),Stream.of(this.anguloField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),Stream.of(this.ramificacionesField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray());
+        generatedTree.pintar();
         this.TreeContainer.add(generatedTree);
         this.TreeContainer.setVisible(true);
     }//GEN-LAST:event_generateButtonActionPerformed
