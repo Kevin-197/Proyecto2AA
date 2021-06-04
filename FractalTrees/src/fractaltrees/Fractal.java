@@ -133,16 +133,16 @@ public class Fractal extends JComponent {
     }
     
     
-    
-    public double Fitness(String Url) throws IOException{
+    public double SubFitness(String Url, int multX, int multY) throws IOException{
         double nota = 0;
         BufferedImage image;
         image = ImageIO.read(getClass().getResource(Url));
         BufferedImage image2;
         image2 = this.img;
-        int[][] array2D = new int[image2.getWidth()][image2.getHeight()];
-        for (int xPixel = 0; xPixel < image2.getWidth(); xPixel++) {
-            for (int yPixel = 0; yPixel < image2.getHeight(); yPixel++) {
+        int RangeX = 150*multX;
+        int RangeY = 150*multY;
+        for (int xPixel = RangeX-150; xPixel < RangeX; xPixel++) {
+            for (int yPixel = RangeY-150; yPixel < RangeY; yPixel++) {
                 int color2 = image2.getRGB(xPixel, yPixel);
                 int color1 = image.getRGB(xPixel, yPixel);
                 if(color1==Color.WHITE.getRGB() && color2==Color.WHITE.getRGB()){
@@ -150,9 +150,9 @@ public class Fractal extends JComponent {
                     nota = nota+0.5;
                 }else if(color1==Color.WHITE.getRGB() && color2!=Color.WHITE.getRGB()){
 //                    System.out.println("diferentes1");
-                    nota--;
+                    nota=nota-2;
                 }else if(color1!=Color.WHITE.getRGB() && color2==Color.BLACK.getRGB()){
-                    System.out.println("negros");
+                    //System.out.println("negros");
                     nota = nota +2;
                 }else if(color1!=Color.WHITE.getRGB() && color2==Color.WHITE.getRGB()){
 //                    System.out.println("diferentes2");
@@ -161,6 +161,30 @@ public class Fractal extends JComponent {
             }
         }
         return nota;
+    }
+    
+    public double Fitness(String Url) throws IOException{
+        double notaF = 0;
+        double nota1 = SubFitness(Url, 1, 1);
+        double nota2 = SubFitness(Url, 1, 2);
+        double nota3 = SubFitness(Url, 1, 3);
+        double nota4 = SubFitness(Url, 1, 4);
+        double nota5 = SubFitness(Url, 2, 1);
+        double nota6 = SubFitness(Url, 2, 2);
+        double nota7 = SubFitness(Url, 2, 3);
+        double nota8 = SubFitness(Url, 2, 4);
+        double nota9 = SubFitness( Url, 3, 1);
+        double nota10 = SubFitness(Url, 3, 2);
+        double nota11 = SubFitness(Url, 3, 3);
+        double nota12 = SubFitness(Url, 3, 4);
+        double nota13 = SubFitness(Url, 4, 1);
+        double nota14 = SubFitness(Url, 4, 2);
+        double nota15 = SubFitness(Url, 4, 3);
+        double nota16 = SubFitness(Url, 4, 4);
+        
+        notaF = (nota1 + nota2 + nota3 + nota4 + nota5 + nota6 + nota7 + nota8 + nota9 + nota10 + nota11 + nota12 + nota13 + nota14 + nota15 + nota16)/16;
+        
+        return notaF;
     }
     /*
     public static void main(String[] args) {
