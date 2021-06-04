@@ -37,7 +37,7 @@ public class Fractal extends JComponent {
     private int[] ramas;
     private BufferedImage img = new BufferedImage(600,600,BufferedImage.TYPE_INT_ARGB);
     private Graphics2D imgG = img.createGraphics();
-    
+    private double nota;
 
     public Fractal(int nivel, double[] decrecimientoL, double longitud, double[] decrecimientoD, double diametro, double[] angulo, int[] ramas) {
         this.nivel = nivel;
@@ -83,6 +83,10 @@ public class Fractal extends JComponent {
 
     public BufferedImage getImg() {
         return img;
+    }
+
+    public double getNota() {
+        return nota;
     }
     
     
@@ -183,7 +187,7 @@ public class Fractal extends JComponent {
         double nota16 = SubFitness(Url, 4, 4);
         
         notaF = (nota1 + nota2 + nota3 + nota4 + nota5 + nota6 + nota7 + nota8 + nota9 + nota10 + nota11 + nota12 + nota13 + nota14 + nota15 + nota16)/16;
-        
+        this.nota=notaF;
         return notaF;
     }
     /*

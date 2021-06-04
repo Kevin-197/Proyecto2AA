@@ -143,9 +143,9 @@ public class GeneticAlgorithm {
 
                 
                 NewPareja = crossChromosomes(c1,c2);
-                MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual1Chromosome()),new StringBuilder(c1), new StringBuilder(c2), Generacion.get(i).getTree().getImg(), Generacion.get(i).getTree().getImg() ) ); 
+                MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual1Chromosome()),new StringBuilder(c1), new StringBuilder(c2), Generacion.get(i).getTree(), Generacion.get(i+1).getTree() ) ); 
                
-                MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual2Chromosome()),new StringBuilder(c1), new StringBuilder(c2), Generacion.get(i).getTree().getImg(), Generacion.get(i).getTree().getImg() ) ); 
+                MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual2Chromosome()),new StringBuilder(c1), new StringBuilder(c2), Generacion.get(i).getTree(), Generacion.get(i+1).getTree() ) ); 
                 //System.out.println(Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(0, 3),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(3, 9),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(9, 13),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(13, 19),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(19, 23),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(23, 29),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(29, 32),2));  
 
             }

@@ -7,6 +7,7 @@ package fractaltrees;
 
 import java.awt.CardLayout;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -20,6 +21,8 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      * Creates new form MainWindow
      */
+    private int currentlyShowing;
+    private ArrayList<Generation> BestArray;
     public MainWindow() {
         initComponents();
         /*
@@ -74,9 +77,9 @@ public class MainWindow extends javax.swing.JFrame {
         parent1RadioButton = new javax.swing.JRadioButton();
         parent2RadioButton = new javax.swing.JRadioButton();
         TreeContainer2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        generationCbox = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        resDLongitud = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -86,6 +89,16 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         VolverButton = new javax.swing.JButton();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        resResultado = new javax.swing.JLabel();
+        resNiveles = new javax.swing.JLabel();
+        resRamas = new javax.swing.JLabel();
+        resAngulo = new javax.swing.JLabel();
+        resLongitud = new javax.swing.JLabel();
+        resDiametro = new javax.swing.JLabel();
+        resDDiametro = new javax.swing.JLabel();
+        resChromosome1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -231,36 +244,56 @@ public class MainWindow extends javax.swing.JFrame {
         MainRadioButton.setForeground(new java.awt.Color(255, 255, 255));
         MainRadioButton.setSelected(true);
         MainRadioButton.setText("Main Tree");
+        MainRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MainRadioButtonActionPerformed(evt);
+            }
+        });
         CheckGenerations.add(MainRadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 110, -1));
 
         shiftTrees.add(parent1RadioButton);
         parent1RadioButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         parent1RadioButton.setForeground(new java.awt.Color(255, 255, 255));
         parent1RadioButton.setText("Parent 1");
+        parent1RadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parent1RadioButtonActionPerformed(evt);
+            }
+        });
         CheckGenerations.add(parent1RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 110, -1));
 
         shiftTrees.add(parent2RadioButton);
         parent2RadioButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         parent2RadioButton.setForeground(new java.awt.Color(255, 255, 255));
         parent2RadioButton.setText("Parent 2");
+        parent2RadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                parent2RadioButtonActionPerformed(evt);
+            }
+        });
         CheckGenerations.add(parent2RadioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 110, -1));
 
         TreeContainer2.setPreferredSize(new java.awt.Dimension(600, 600));
         TreeContainer2.setLayout(new java.awt.BorderLayout());
         CheckGenerations.add(TreeContainer2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 600, 600));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generación 1", "Generación 2", "Generación 3", "Generación 4" }));
-        CheckGenerations.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 130, 30));
+        generationCbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Generación 1", "Generación 2", "Generación 3", "Generación 4" }));
+        generationCbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generationCboxActionPerformed(evt);
+            }
+        });
+        CheckGenerations.add(generationCbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 130, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Tiempo de ejecución:");
         CheckGenerations.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 180, 30));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Cromosomas");
-        CheckGenerations.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 110, 30));
+        resDLongitud.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        resDLongitud.setForeground(new java.awt.Color(255, 255, 255));
+        resDLongitud.setText("11001000011111011001101001101100");
+        CheckGenerations.add(resDLongitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 510, 270, 30));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -309,6 +342,56 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         CheckGenerations.add(VolverButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 30));
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel31.setText("Cromosomas");
+        CheckGenerations.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 110, 30));
+
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel32.setText("Cromosomas");
+        CheckGenerations.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 110, 30));
+
+        resResultado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        resResultado.setForeground(new java.awt.Color(255, 255, 255));
+        resResultado.setText("11001000011111011001101001101100");
+        CheckGenerations.add(resResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 300, 30));
+
+        resNiveles.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        resNiveles.setForeground(new java.awt.Color(255, 255, 255));
+        resNiveles.setText("11001000011111011001101001101100");
+        CheckGenerations.add(resNiveles, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 300, 30));
+
+        resRamas.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        resRamas.setForeground(new java.awt.Color(255, 255, 255));
+        resRamas.setText("11001000011111011001101001101100");
+        CheckGenerations.add(resRamas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, 300, 30));
+
+        resAngulo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        resAngulo.setForeground(new java.awt.Color(255, 255, 255));
+        resAngulo.setText("11001000011111011001101001101100");
+        CheckGenerations.add(resAngulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 350, 300, 30));
+
+        resLongitud.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        resLongitud.setForeground(new java.awt.Color(255, 255, 255));
+        resLongitud.setText("11001000011111011001101001101100");
+        CheckGenerations.add(resLongitud, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 300, 30));
+
+        resDiametro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        resDiametro.setForeground(new java.awt.Color(255, 255, 255));
+        resDiametro.setText("11001000011111011001101001101100");
+        CheckGenerations.add(resDiametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, 300, 30));
+
+        resDDiametro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        resDDiametro.setForeground(new java.awt.Color(255, 255, 255));
+        resDDiametro.setText("11001000011111011001101001101100");
+        CheckGenerations.add(resDDiametro, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 470, 270, 30));
+
+        resChromosome1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        resChromosome1.setForeground(new java.awt.Color(255, 255, 255));
+        resChromosome1.setText("11001000011111011001101001101100");
+        CheckGenerations.add(resChromosome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 300, 30));
 
         CardPanel.add(CheckGenerations, "card2");
 
@@ -489,16 +572,16 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-        GeneticAlgorithm Genetico = new GeneticAlgorithm(Integer.parseInt(this.genMutationField.getText()), Integer.parseInt(this.genindividuoField.getText()), Integer.parseInt(this.genTotalField.getText()), this.urlLabel.getText());
-        Genetico.run(
-                Stream.of(this.genRamasField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
-                Stream.of(this.genAnguloField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
-                Stream.of(this.genProfundidadField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
-                Stream.of(this.genDecLongitudField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
-                Stream.of(this.genDecDiametroField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
-                Stream.of(this.genDiametroField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
-                Stream.of(this.genLongitudField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray()
-        );
+//        GeneticAlgorithm Genetico = new GeneticAlgorithm(Integer.parseInt(this.genMutationField.getText()), Integer.parseInt(this.genindividuoField.getText()), Integer.parseInt(this.genTotalField.getText()), this.urlLabel.getText());
+//        Genetico.run(
+//                Stream.of(this.genRamasField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
+//                Stream.of(this.genAnguloField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+//                Stream.of(this.genProfundidadField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
+//                Stream.of(this.genDecLongitudField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+//                Stream.of(this.genDecDiametroField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+//                Stream.of(this.genDiametroField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+//                Stream.of(this.genLongitudField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray()
+//        );
         CardLayout escenarios = (CardLayout)CardPanel.getLayout();
         escenarios.show(CardPanel,"card2" );
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -519,6 +602,81 @@ public class MainWindow extends javax.swing.JFrame {
         this.silhouetteFrame.setVisible(false);
          this.urlLabel.setText(this.silhouetteChooser.getSelectedFile().getAbsolutePath());
     }//GEN-LAST:event_silhouetteChooserActionPerformed
+
+    private void generationCboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generationCboxActionPerformed
+        // TODO add your handling code here:
+        this.currentlyShowing = this.generationCbox.getSelectedIndex();
+        
+        this.MainRadioButton.setSelected(true);
+        SetMain();
+       
+        //this.jLabel10.setText(""+value);
+    }//GEN-LAST:event_generationCboxActionPerformed
+
+    private void MainRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MainRadioButtonActionPerformed
+        // TODO add your handling code here:
+        SetMain();
+    }//GEN-LAST:event_MainRadioButtonActionPerformed
+
+    private void parent1RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parent1RadioButtonActionPerformed
+        // TODO add your handling code here:
+        this.TreeContainer2.removeAll();
+        this.TreeContainer2.revalidate();
+        this.TreeContainer2.repaint();
+        this.TreeContainer2.add(this.BestArray.get(this.currentlyShowing).getParent1());
+        this.TreeContainer2.setVisible(true);
+        
+        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getParent1c().toString());
+        this.resAngulo.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getAngulo()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[1]);
+        this.resRamas.setText(this.BestArray.get(this.currentlyShowing).getParent1().getRamas()[0]+","+this.BestArray.get(this.currentlyShowing).getTree().getRamas()[1]);
+        this.resNiveles.setText(this.BestArray.get(this.currentlyShowing).getParent1().getNivel()+"");
+        this.resLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getLongitud()+"");
+        this.resDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getDiametro()+"");
+        this.resDLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getDecrecimientoL()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoL()[1]);
+        this.resDDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getDecrecimientoD()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoD()[1]);
+        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getParent1().getNota()+"");
+        
+    }//GEN-LAST:event_parent1RadioButtonActionPerformed
+
+    private void parent2RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parent2RadioButtonActionPerformed
+        // TODO add your handling code here:
+        this.TreeContainer2.removeAll();
+        this.TreeContainer2.revalidate();
+        this.TreeContainer2.repaint();
+        this.TreeContainer2.add(this.BestArray.get(this.currentlyShowing).getParent2());
+        this.TreeContainer2.setVisible(true);
+        
+        
+        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getParent2c().toString());
+        this.resAngulo.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getAngulo()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[1]);
+        this.resRamas.setText(this.BestArray.get(this.currentlyShowing).getParent2().getRamas()[0]+","+this.BestArray.get(this.currentlyShowing).getTree().getRamas()[1]);
+        this.resNiveles.setText(this.BestArray.get(this.currentlyShowing).getParent2().getNivel()+"");
+        this.resLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getLongitud()+"");
+        this.resDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getDiametro()+"");
+        this.resDLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getDecrecimientoL()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoL()[1]);
+        this.resDDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getDecrecimientoD()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoD()[1]);
+        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getParent2().getNota()+"");
+    }//GEN-LAST:event_parent2RadioButtonActionPerformed
+
+    private void SetMain() {                                                   
+        // TODO add your handling code here:
+        this.TreeContainer2.removeAll();
+        this.TreeContainer2.revalidate();
+        this.TreeContainer2.repaint();
+        this.TreeContainer2.add(this.BestArray.get(this.currentlyShowing).getTree());
+        this.TreeContainer2.setVisible(true);
+        
+        
+        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getChromosome().toString());
+        this.resAngulo.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[1]);
+        this.resRamas.setText(this.BestArray.get(this.currentlyShowing).getTree().getRamas()[0]+","+this.BestArray.get(this.currentlyShowing).getTree().getRamas()[1]);
+        this.resNiveles.setText(this.BestArray.get(this.currentlyShowing).getTree().getNivel()+"");
+        this.resLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getLongitud()+"");
+        this.resDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getDiametro()+"");
+        this.resDLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoL()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoL()[1]);
+        this.resDDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoD()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoD()[1]);
+        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getTree().getNota()+"");
+    }                                                  
 
     /**
      * @param args the command line arguments
@@ -578,11 +736,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField genRamasField;
     private javax.swing.JTextField genTotalField;
     private javax.swing.JButton generateButton;
+    private javax.swing.JComboBox<String> generationCbox;
     private javax.swing.JTextField genindividuoField;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -605,6 +762,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -620,6 +779,15 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JRadioButton parent2RadioButton;
     private javax.swing.JTextField profundidadField;
     private javax.swing.JTextField ramificacionesField;
+    private javax.swing.JLabel resAngulo;
+    private javax.swing.JLabel resChromosome1;
+    private javax.swing.JLabel resDDiametro;
+    private javax.swing.JLabel resDLongitud;
+    private javax.swing.JLabel resDiametro;
+    private javax.swing.JLabel resLongitud;
+    private javax.swing.JLabel resNiveles;
+    private javax.swing.JLabel resRamas;
+    private javax.swing.JLabel resResultado;
     private javax.swing.ButtonGroup shiftTrees;
     private javax.swing.JFileChooser silhouetteChooser;
     private javax.swing.JInternalFrame silhouetteFrame;

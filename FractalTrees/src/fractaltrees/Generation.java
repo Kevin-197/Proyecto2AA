@@ -21,8 +21,8 @@ public class Generation {
     StringBuilder chromosome;
     StringBuilder parent1c;
     StringBuilder parent2c;
-    BufferedImage parent1;
-    BufferedImage parent2;
+    Fractal parent1;
+    Fractal parent2;
     
     
 //    
@@ -137,14 +137,15 @@ public class Generation {
         this.chromosome = chromosome;
     }
 
-    public Generation(StringBuilder chromosome, StringBuilder parent1c, StringBuilder parent2c, BufferedImage parent1, BufferedImage parent2) {
+
+    public Generation(StringBuilder chromosome, StringBuilder parent1c, StringBuilder parent2c, Fractal parent1, Fractal parent2) {
         this.chromosome = chromosome;
         this.parent1c = parent1c;
         this.parent2c = parent2c;
         this.parent1 = parent1;
         this.parent2 = parent2;
-        
     }
+    
 
     public Fractal getTree() {
         return Tree;
@@ -157,6 +158,22 @@ public class Generation {
 
     public StringBuilder getChromosome() {
         return chromosome;
+    }
+
+    public Fractal getParent1() {
+        return parent1;
+    }
+
+    public Fractal getParent2() {
+        return parent2;
+    }
+
+    public StringBuilder getParent1c() {
+        return parent1c;
+    }
+
+    public StringBuilder getParent2c() {
+        return parent2c;
     }
     
     
