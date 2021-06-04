@@ -80,6 +80,10 @@ public class Fractal extends JComponent {
     public Graphics2D getImgG() {
         return imgG;
     }
+
+    public BufferedImage getImg() {
+        return img;
+    }
     
     
     

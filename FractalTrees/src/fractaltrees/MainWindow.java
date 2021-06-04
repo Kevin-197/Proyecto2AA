@@ -47,11 +47,28 @@ public class MainWindow extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         urlLabel = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        individuoField = new javax.swing.JTextField();
+        genindividuoField = new javax.swing.JTextField();
         fileChooser = new javax.swing.JButton();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        genField = new javax.swing.JTextField();
+        genTotalField = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        genMutationField = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        genRamasField = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        genProfundidadField = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        genAnguloField = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        genLongitudField = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        genDiametroField = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        genDecDiametroField = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        genDecLongitudField = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
         CheckGenerations = new javax.swing.JPanel();
         MainRadioButton = new javax.swing.JRadioButton();
         parent1RadioButton = new javax.swing.JRadioButton();
@@ -120,17 +137,17 @@ public class MainWindow extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        startGenPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 510, 210, 50));
+        startGenPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 560, 210, 50));
 
         urlLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         urlLabel.setForeground(new java.awt.Color(240, 240, 240));
-        startGenPanel.add(urlLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 370, 30));
+        startGenPanel.add(urlLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 510, 370, 30));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(240, 240, 240));
         jLabel20.setText("Individuos por Generación:");
-        startGenPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
-        startGenPanel.add(individuoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 80, 40));
+        startGenPanel.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, -1, -1));
+        startGenPanel.add(genindividuoField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 80, 40));
 
         fileChooser.setText("Escoger");
         fileChooser.addActionListener(new java.awt.event.ActionListener() {
@@ -138,18 +155,71 @@ public class MainWindow extends javax.swing.JFrame {
                 fileChooserActionPerformed(evt);
             }
         });
-        startGenPanel.add(fileChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 460, -1, 30));
+        startGenPanel.add(fileChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 510, -1, 30));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(240, 240, 240));
         jLabel21.setText("Silueta:");
-        startGenPanel.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, -1, -1));
+        startGenPanel.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 510, -1, -1));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(240, 240, 240));
         jLabel22.setText("Generaciones totales:");
-        startGenPanel.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, -1, -1));
-        startGenPanel.add(genField, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, 80, 40));
+        startGenPanel.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 440, -1, -1));
+        startGenPanel.add(genTotalField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 430, 80, 40));
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel23.setText("Índice de Mutación: ");
+        startGenPanel.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, -1, -1));
+        startGenPanel.add(genMutationField, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 430, 80, 40));
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel24.setText("Rango de Ramas: ");
+        startGenPanel.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
+        startGenPanel.add(genRamasField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, 80, 40));
+
+        jLabel25.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel25.setText("Rango de Niveles: ");
+        startGenPanel.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, -1, -1));
+        startGenPanel.add(genProfundidadField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 80, 40));
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel26.setText("Rango de Ángulos: ");
+        startGenPanel.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, -1, -1));
+        startGenPanel.add(genAnguloField, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 80, 40));
+
+        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel27.setText("Rango de Longitud: ");
+        startGenPanel.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 200, -1, -1));
+        startGenPanel.add(genLongitudField, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 190, 80, 40));
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel28.setText("Rango de Diametro: ");
+        startGenPanel.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 260, -1, -1));
+        startGenPanel.add(genDiametroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 250, 80, 40));
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel29.setText("Rango de Decrecimiento de Diametro: ");
+        startGenPanel.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, -1, -1));
+        startGenPanel.add(genDecDiametroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 310, 80, 40));
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel30.setText("Rango de Decrecimiento de Longitud: ");
+        startGenPanel.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 380, -1, -1));
+        startGenPanel.add(genDecLongitudField, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 370, 80, 40));
+
+        jLabel19.setFont(new java.awt.Font("Euphorigenic", 0, 69)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Fractal Forests");
+        startGenPanel.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, -1, -1));
 
         CardPanel.add(startGenPanel, "card1");
 
@@ -417,6 +487,18 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
+        GeneticAlgorithm Genetico = new GeneticAlgorithm(Integer.parseInt(this.genMutationField.getText()), Integer.parseInt(this.genindividuoField.getText()), Integer.parseInt(this.genTotalField.getText()), this.urlLabel.getText());
+        Genetico.run(
+                Stream.of(this.genRamasField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
+                Stream.of(this.genAnguloField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+                Stream.of(this.genProfundidadField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
+                Stream.of(this.genDecLongitudField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+                Stream.of(this.genDecDiametroField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+                Stream.of(this.genDiametroField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+                Stream.of(this.genLongitudField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray()
+        );
         CardLayout escenarios = (CardLayout)CardPanel.getLayout();
         escenarios.show(CardPanel,"card2" );
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -486,9 +568,17 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField decrementoLField;
     private javax.swing.JTextField diametroField;
     private javax.swing.JButton fileChooser;
-    private javax.swing.JTextField genField;
+    private javax.swing.JTextField genAnguloField;
+    private javax.swing.JTextField genDecDiametroField;
+    private javax.swing.JTextField genDecLongitudField;
+    private javax.swing.JTextField genDiametroField;
+    private javax.swing.JTextField genLongitudField;
+    private javax.swing.JTextField genMutationField;
+    private javax.swing.JTextField genProfundidadField;
+    private javax.swing.JTextField genRamasField;
+    private javax.swing.JTextField genTotalField;
     private javax.swing.JButton generateButton;
-    private javax.swing.JTextField individuoField;
+    private javax.swing.JTextField genindividuoField;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
@@ -501,11 +591,20 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
