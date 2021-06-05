@@ -5,6 +5,7 @@
  */
 package fractaltrees;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -84,7 +85,7 @@ public class GeneticAlgorithm {
         return result;
 
     }
-    public void run(int[] ranRamas, double[] ranAngulos, int[] ranProfundidad, double[] ranDecrecimientoL, double[] ranDecrecimientoD, double[] ranDiametro, double[] ranLongitud){
+    public void run(int[] ranRamas, double[] ranAngulos, int[] ranProfundidad, double[] ranDecrecimientoL, double[] ranDecrecimientoD, double[] ranDiametro, double[] ranLongitud) throws IOException{
         /*
         
         String binario1 =  Integer.toBinaryString(cromosoma1);
@@ -93,9 +94,10 @@ public class GeneticAlgorithm {
         */
         Fractal Tree1;
         ArrayList<Generation> Generacion = new ArrayList<Generation >();
-        int randomnivel, randomlongitud, randomdiametro, randomangulo1,randomangulo2, randomramas1,randomramas2, randomDecL1, randomDecL2, randomDecD1, randomDecD2;
+        int randomnivel, randomlongitud, randomdiametro, randomangulo1,randomangulo2, randomramas1,randomramas2, randomDecL1, randomDecL2, randomDecD1, randomDecD2, maxFitness;
         Random randBuilder = new Random();
         ArrayList<Generation> MatrizIndividuos;
+        ArrayList<Generation> BestPicks = new ArrayList<Generation>();
         this.diffangulo=(int)ranAngulos[1]-(int)ranAngulos[0];
         this.difframas=(int)ranAngulos[1]-(int)ranAngulos[0];
         this.diffcrecimientoD=(int)ranDecrecimientoD[1]-(int)ranDecrecimientoD[0];
@@ -120,10 +122,25 @@ public class GeneticAlgorithm {
         }
         for(int j=0; j<this.totalGenerations;j++){
             
-            //fitness
+            //fitness CON GENERACIÓN
+             Generacion.get(0).Tree.Fitness(this.url) ;
+            maxFitness=0;
+            for(int i=0; i<this.generationsize; i++){
+                if(Generacion.get(i).Tree.Fitness(this.url) >Generacion.get(maxFitness).Tree.getNota()){
+                    maxFitness=i;
+                }
+                
+            }
             
             
-            Collections.shuffle(Generacion);
+            
+            //Extraer el mejor y ponerlo en bestGeneration
+            BestPicks.add(Generacion.get(maxFitness));
+            
+            //normalizar notas y hacer selección de individuo aleatorio según notas normalizadas
+            
+            
+            Collections.shuffle(Generacion); //cambiar a  aletorio
         
         
         
@@ -133,21 +150,21 @@ public class GeneticAlgorithm {
             MatrizIndividuos = new ArrayList<Generation >();
 
             BinaryPair NewPareja;
-            for(int i =0; i<Generacion.size();i=i+2){
+            for(int i =0; i<Generacion.size();i=i+2){ //cambiar a  aletorio
 
 
                 //for de parejas
-                String c1= TreeToBinary(Generacion.get(i).getTree());
-                String c2= TreeToBinary(Generacion.get(i+1).getTree());
+                String c1= TreeToBinary(Generacion.get(i).getTree());//cambiar a  aletorio
+                String c2= TreeToBinary(Generacion.get(i+1).getTree());//cambiar a  aletorio
 
 
                 
                 NewPareja = crossChromosomes(c1,c2);
                 MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual1Chromosome()),new StringBuilder(c1), new StringBuilder(c2), Generacion.get(i).getTree(), Generacion.get(i+1).getTree() ) ); 
-               
+               //cambiar a  aletorio
                 MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual2Chromosome()),new StringBuilder(c1), new StringBuilder(c2), Generacion.get(i).getTree(), Generacion.get(i+1).getTree() ) ); 
                 //System.out.println(Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(0, 3),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(3, 9),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(9, 13),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(13, 19),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(19, 23),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(23, 29),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(29, 32),2));  
-
+                //cambiar a  aletorio
             }
 
             //cambiar bits indice de mutación
@@ -166,13 +183,13 @@ public class GeneticAlgorithm {
             }
             //System.out.println(Integer.parseInt(MatrizIndividuos.get(0).substring(0, 3),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(3, 9),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(9, 13),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(13, 19),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(19, 23),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(23, 29),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(29, 32),2));  
 
-            for(int i =0; i<Generacion.size();i=i+2){
+            for(int i =0; i<Generacion.size();i=i+2){ 
                 MatrizIndividuos.get(i).setTree(BinaryToTree(MatrizIndividuos.get(i).getChromosome().toString()));
                 Generacion.set(i, MatrizIndividuos.get(i));
             }
         }
         
-
+        // return  Bestpicks
     }
             
     
