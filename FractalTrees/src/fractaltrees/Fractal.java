@@ -154,13 +154,13 @@ public class Fractal extends JComponent {
                     nota = nota+0.5;
                 }else if(color1==Color.WHITE.getRGB() && color2!=Color.WHITE.getRGB()){
 //                    System.out.println("diferentes1");
-                    nota=nota-2;
+                    nota=nota-3;
                 }else if(color1!=Color.WHITE.getRGB() && color2==Color.BLACK.getRGB()){
                     //System.out.println("negros");
-                    nota = nota +2;
+                    nota = nota +3;
                 }else if(color1!=Color.WHITE.getRGB() && color2==Color.WHITE.getRGB()){
 //                    System.out.println("diferentes2");
-                    nota--;
+                    nota= nota-2;
                 }
             }
         }
@@ -169,24 +169,14 @@ public class Fractal extends JComponent {
     
     public double Fitness(String Url) throws IOException{
         double notaF = 0;
-        double nota1 = SubFitness(Url, 1, 1);
-        double nota2 = SubFitness(Url, 1, 2);
-        double nota3 = SubFitness(Url, 1, 3);
-        double nota4 = SubFitness(Url, 1, 4);
-        double nota5 = SubFitness(Url, 2, 1);
-        double nota6 = SubFitness(Url, 2, 2);
-        double nota7 = SubFitness(Url, 2, 3);
-        double nota8 = SubFitness(Url, 2, 4);
-        double nota9 = SubFitness( Url, 3, 1);
-        double nota10 = SubFitness(Url, 3, 2);
-        double nota11 = SubFitness(Url, 3, 3);
-        double nota12 = SubFitness(Url, 3, 4);
-        double nota13 = SubFitness(Url, 4, 1);
-        double nota14 = SubFitness(Url, 4, 2);
-        double nota15 = SubFitness(Url, 4, 3);
-        double nota16 = SubFitness(Url, 4, 4);
+        for (int i = 1; i <= 4; i++) {
+            for (int j = 1; j <= 4; j++) {
+                notaF = notaF + SubFitness(Url, i, j);
+                System.out.println(i+"  "+j);
+            }
+        }
         
-        notaF = (nota1 + nota2 + nota3 + nota4 + nota5 + nota6 + nota7 + nota8 + nota9 + nota10 + nota11 + nota12 + nota13 + nota14 + nota15 + nota16)/16;
+        notaF = notaF/16;
         this.nota=notaF;
         return notaF;
     }

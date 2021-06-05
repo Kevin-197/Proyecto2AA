@@ -98,6 +98,9 @@ public class GeneticAlgorithm {
         Random randBuilder = new Random();
         ArrayList<Generation> MatrizIndividuos;
         ArrayList<Generation> BestPicks = new ArrayList<Generation>();
+        double TotalNotas = 0;
+        ArrayList<Double> NotasNormalizadas = new ArrayList<Double>();
+        ArrayList<Fractal> CandidatosCruce = new ArrayList<Fractal>();
         this.diffangulo=(int)ranAngulos[1]-(int)ranAngulos[0];
         this.difframas=(int)ranAngulos[1]-(int)ranAngulos[0];
         this.diffcrecimientoD=(int)ranDecrecimientoD[1]-(int)ranDecrecimientoD[0];
@@ -126,7 +129,9 @@ public class GeneticAlgorithm {
              Generacion.get(0).Tree.Fitness(this.url) ;
             maxFitness=0;
             for(int i=0; i<this.generationsize; i++){
-                if(Generacion.get(i).Tree.Fitness(this.url) >Generacion.get(maxFitness).Tree.getNota()){
+                double currentNota = Generacion.get(i).Tree.Fitness(this.url);
+                TotalNotas = TotalNotas+currentNota;
+                if(currentNota >Generacion.get(maxFitness).Tree.getNota()){
                     maxFitness=i;
                 }
                 
@@ -138,7 +143,24 @@ public class GeneticAlgorithm {
             BestPicks.add(Generacion.get(maxFitness));
             
             //normalizar notas y hacer selección de individuo aleatorio según notas normalizadas
-            
+            for (int i = 0; i < this.generationsize; i++) {
+                double currentNotaN = ((Generacion.get(i).Tree.getNota())*100)/TotalNotas;
+                System.out.println(currentNotaN);
+                NotasNormalizadas.add(i,currentNotaN);
+            }
+            for (int i = 0; i < NotasNormalizadas.size(); i++) {
+                double random = Math.random();
+                double prop = 0;
+                for (int k = 0; k < NotasNormalizadas.size(); k++) {
+                    prop = prop + NotasNormalizadas.get(k)/100;
+                    if(random < prop){
+                        CandidatosCruce.add(Generacion.get(k).Tree);
+                        break;
+                    }
+                }
+            }
+            TotalNotas=0;
+            NotasNormalizadas.clear();
             
             Collections.shuffle(Generacion); //cambiar a  aletorio
         
