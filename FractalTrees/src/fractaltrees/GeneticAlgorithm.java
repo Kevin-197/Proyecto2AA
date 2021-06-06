@@ -133,7 +133,9 @@ public class GeneticAlgorithm {
             for(int i=1; i<this.generationsize; i++){
                 Generacion.get(i).Tree.pintar();
                 double currentNota = Generacion.get(i).Tree.Fitness(this.url);
-                TotalNotas = TotalNotas+currentNota;
+                if(currentNota > 0){
+                    TotalNotas = TotalNotas+currentNota;
+                }
                 if(currentNota >Generacion.get(maxFitness).Tree.getNota()){
                     maxFitness=i;
                 }
@@ -146,20 +148,26 @@ public class GeneticAlgorithm {
             BestPicks.add(Generacion.get(maxFitness));
             
             //normalizar notas y hacer selección de individuo aleatorio según notas normalizadas
+            System.out.println("Total "+TotalNotas);
             for (int i = 0; i < this.generationsize; i++) {
+                System.out.println("Nota  "+Generacion.get(i).Tree.getNota());
                 double currentNotaN = ((Generacion.get(i).Tree.getNota())*100)/TotalNotas;
                 System.out.println(currentNotaN);
                 NotasNormalizadas.add(i,currentNotaN);
             }
+            System.out.println("==================================");
             for (int i = 0; i < NotasNormalizadas.size(); i++) {
                 double random = Math.random();
                 double prop = 0;
                 for (int k = 0; k < NotasNormalizadas.size(); k++) {
-                    prop = prop + NotasNormalizadas.get(k)/100;
-                    if(random < prop){
-                        CandidatosCruce.add(Generacion.get(k).Tree);
-                        break;
+                    if(NotasNormalizadas.get(k)>0){
+                        prop = prop + NotasNormalizadas.get(k)/100;
+                        if(random < prop){
+                            CandidatosCruce.add(Generacion.get(k).Tree);
+                            break;
+                        }
                     }
+                    
                 }
             }
             TotalNotas=0;
