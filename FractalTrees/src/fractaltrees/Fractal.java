@@ -140,7 +140,7 @@ public class Fractal extends JComponent {
     public double SubFitness(String Url, int multX, int multY) throws IOException{
         double nota = 0;
         BufferedImage image;
-        image = ImageIO.read(getClass().getResource(Url));
+        image = ImageIO.read(getClass().getResourceAsStream("Images/Arboles/Arbol3.bmp"));
         BufferedImage image2;
         image2 = this.img;
         int RangeX = 150*multX;

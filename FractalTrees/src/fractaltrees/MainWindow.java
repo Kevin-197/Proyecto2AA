@@ -8,9 +8,11 @@ package fractaltrees;
 import java.awt.CardLayout;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -572,16 +574,29 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-//        GeneticAlgorithm Genetico = new GeneticAlgorithm(Integer.parseInt(this.genMutationField.getText()), Integer.parseInt(this.genindividuoField.getText()), Integer.parseInt(this.genTotalField.getText()), this.urlLabel.getText());
-//        Genetico.run(
-//                Stream.of(this.genRamasField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
-//                Stream.of(this.genAnguloField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
-//                Stream.of(this.genProfundidadField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
-//                Stream.of(this.genDecLongitudField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
-//                Stream.of(this.genDecDiametroField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
-//                Stream.of(this.genDiametroField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
-//                Stream.of(this.genLongitudField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray()
-//        );
+        GeneticAlgorithm Genetico = new GeneticAlgorithm(Integer.parseInt(this.genMutationField.getText()), Integer.parseInt(this.genindividuoField.getText()), Integer.parseInt(this.genTotalField.getText()), this.urlLabel.getText());
+        try {
+            this.BestArray= Genetico.run(
+                    Stream.of(this.genRamasField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
+                    Stream.of(this.genAnguloField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+                    Stream.of(this.genProfundidadField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
+                    Stream.of(this.genDecLongitudField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+                    Stream.of(this.genDecDiametroField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+                    Stream.of(this.genDiametroField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray(),
+                    Stream.of(this.genLongitudField.getText().split("\\D+")).mapToDouble(Double::parseDouble).toArray()
+            );
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Vector comboBoxItems=new Vector();
+    
+        for(int i=1;i<=this.BestArray.size(); i++ ){
+            comboBoxItems.add("Generación "+i);
+        }
+        final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
+        this.generationCbox.setModel(model);
+        this.MainRadioButton.setSelected(true);
+        SetMain();
         CardLayout escenarios = (CardLayout)CardPanel.getLayout();
         escenarios.show(CardPanel,"card2" );
     }//GEN-LAST:event_jButton1ActionPerformed

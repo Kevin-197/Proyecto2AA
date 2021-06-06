@@ -85,13 +85,14 @@ public class GeneticAlgorithm {
         return result;
 
     }
-    public void run(int[] ranRamas, double[] ranAngulos, int[] ranProfundidad, double[] ranDecrecimientoL, double[] ranDecrecimientoD, double[] ranDiametro, double[] ranLongitud) throws IOException{
+    public ArrayList<Generation> run(int[] ranRamas, double[] ranAngulos, int[] ranProfundidad, double[] ranDecrecimientoL, double[] ranDecrecimientoD, double[] ranDiametro, double[] ranLongitud) throws IOException{
         /*
         
         String binario1 =  Integer.toBinaryString(cromosoma1);
         String binario2 =  Integer.toBinaryString(cromosoma2);
         System.out.println("Binartio1: "+binario1+" Bin 2: "+ binario2);
         */
+        System.out.println("url: "+this.url);
         Fractal Tree1;
         ArrayList<Generation> Generacion = new ArrayList<Generation >();
         int randomnivel, randomlongitud, randomdiametro, randomangulo1,randomangulo2, randomramas1,randomramas2, randomDecL1, randomDecL2, randomDecD1, randomDecD2, maxFitness;
@@ -129,6 +130,7 @@ public class GeneticAlgorithm {
              Generacion.get(0).Tree.Fitness(this.url) ;
             maxFitness=0;
             for(int i=0; i<this.generationsize; i++){
+                Generacion.get(i).Tree.pintar();
                 double currentNota = Generacion.get(i).Tree.Fitness(this.url);
                 TotalNotas = TotalNotas+currentNota;
                 if(currentNota >Generacion.get(maxFitness).Tree.getNota()){
@@ -162,7 +164,7 @@ public class GeneticAlgorithm {
             TotalNotas=0;
             NotasNormalizadas.clear();
             
-            Collections.shuffle(Generacion); //cambiar a  aletorio
+            Collections.shuffle(CandidatosCruce); //cambiar a  aletorio
         
         
         
@@ -176,15 +178,15 @@ public class GeneticAlgorithm {
 
 
                 //for de parejas
-                String c1= TreeToBinary(Generacion.get(i).getTree());//cambiar a  aletorio
-                String c2= TreeToBinary(Generacion.get(i+1).getTree());//cambiar a  aletorio
+                String c1= TreeToBinary(CandidatosCruce.get(i));//cambiar a  aletorio
+                String c2= TreeToBinary(CandidatosCruce.get(i+1));//cambiar a  aletorio
 
 
                 
                 NewPareja = crossChromosomes(c1,c2);
-                MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual1Chromosome()),new StringBuilder(c1), new StringBuilder(c2), Generacion.get(i).getTree(), Generacion.get(i+1).getTree() ) ); 
+                MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual1Chromosome()),new StringBuilder(c1), new StringBuilder(c2), CandidatosCruce.get(i), CandidatosCruce.get(i+1) ) ); 
                //cambiar a  aletorio
-                MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual2Chromosome()),new StringBuilder(c1), new StringBuilder(c2), Generacion.get(i).getTree(), Generacion.get(i+1).getTree() ) ); 
+                MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual2Chromosome()),new StringBuilder(c1), new StringBuilder(c2), CandidatosCruce.get(i), CandidatosCruce.get(i+1) ) ); 
                 //System.out.println(Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(0, 3),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(3, 9),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(9, 13),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(13, 19),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(19, 23),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(23, 29),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(29, 32),2));  
                 //cambiar a  aletorio
             }
@@ -211,7 +213,7 @@ public class GeneticAlgorithm {
             }
         }
         
-        // return  Bestpicks
+         return  BestPicks;
     }
             
     
