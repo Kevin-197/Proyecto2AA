@@ -59,12 +59,12 @@ public class GeneticAlgorithm {
 
         return new Fractal(
                Integer.parseInt(toConvert.substring(0, 3),2),
-               new double[] {(Integer.parseInt(toConvert.substring(3, 9),2)),Integer.parseInt(toConvert.substring(3, 9),2) },
+               new double[] {(Integer.parseInt(toConvert.substring(3, 9),2)),MaxRange6(Integer.parseInt(toConvert.substring(3, 9),2), this.diffcrecimientoL) },
                Integer.parseInt(toConvert.substring(9, 13),2),
-               new double[] {Integer.parseInt(toConvert.substring(13, 19),2),Integer.parseInt(toConvert.substring(13, 19),2)},
+               new double[] {Integer.parseInt(toConvert.substring(13, 19),2),MaxRange6(Integer.parseInt(toConvert.substring(13, 19),2), this.diffcrecimientoD)},
                Integer.parseInt(toConvert.substring(19, 23),2),
-               new double[] {Integer.parseInt(toConvert.substring(23, 29),2), Integer.parseInt(toConvert.substring(23, 29),2)},
-               new int[] {Integer.parseInt(toConvert.substring(29, 32),2),Integer.parseInt(toConvert.substring(29, 32),2)});
+               new double[] {Integer.parseInt(toConvert.substring(23, 29),2), MaxRange6(Integer.parseInt(toConvert.substring(23, 29),2),this.diffangulo)},
+               new int[] {Integer.parseInt(toConvert.substring(29, 32),2),MaxRange3(Integer.parseInt(toConvert.substring(29, 32),2),this.difframas)});
 
     }
     public String TreeToBinary(Fractal toConvert){
@@ -127,9 +127,10 @@ public class GeneticAlgorithm {
         for(int j=0; j<this.totalGenerations;j++){
             
             //fitness CON GENERACIÓN
+            Generacion.get(0).Tree.pintar();
              Generacion.get(0).Tree.Fitness(this.url) ;
             maxFitness=0;
-            for(int i=0; i<this.generationsize; i++){
+            for(int i=1; i<this.generationsize; i++){
                 Generacion.get(i).Tree.pintar();
                 double currentNota = Generacion.get(i).Tree.Fitness(this.url);
                 TotalNotas = TotalNotas+currentNota;
@@ -164,7 +165,7 @@ public class GeneticAlgorithm {
             TotalNotas=0;
             NotasNormalizadas.clear();
             
-            Collections.shuffle(CandidatosCruce); //cambiar a  aletorio
+            //Collections.shuffle(CandidatosCruce); //cambiar a  aletorio
         
         
         
@@ -181,7 +182,7 @@ public class GeneticAlgorithm {
                 String c1= TreeToBinary(CandidatosCruce.get(i));//cambiar a  aletorio
                 String c2= TreeToBinary(CandidatosCruce.get(i+1));//cambiar a  aletorio
 
-
+                    System.out.println("c1: "+c1+"   c2: "+c2);
                 
                 NewPareja = crossChromosomes(c1,c2);
                 MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual1Chromosome()),new StringBuilder(c1), new StringBuilder(c2), CandidatosCruce.get(i), CandidatosCruce.get(i+1) ) ); 
@@ -203,7 +204,7 @@ public class GeneticAlgorithm {
                 else
                     MatrizIndividuos.get(row).getChromosome().setCharAt(column, '1');
                 mutationnum--;
-                System.out.println(row+", "+column);
+                //System.out.println(row+", "+column);
             }
             //System.out.println(Integer.parseInt(MatrizIndividuos.get(0).substring(0, 3),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(3, 9),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(9, 13),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(13, 19),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(19, 23),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(23, 29),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(29, 32),2));  
 

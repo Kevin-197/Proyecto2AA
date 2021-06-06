@@ -574,7 +574,7 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-        GeneticAlgorithm Genetico = new GeneticAlgorithm(Integer.parseInt(this.genMutationField.getText()), Integer.parseInt(this.genindividuoField.getText()), Integer.parseInt(this.genTotalField.getText()), this.urlLabel.getText());
+            GeneticAlgorithm Genetico = new GeneticAlgorithm(Integer.parseInt(this.genMutationField.getText()), Integer.parseInt(this.genindividuoField.getText()), Integer.parseInt(this.genTotalField.getText()), this.urlLabel.getText());
         try {
             this.BestArray= Genetico.run(
                     Stream.of(this.genRamasField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
