@@ -94,7 +94,7 @@ public class GeneticAlgorithm {
         */
         System.out.println("url: "+this.url);
         Fractal Tree1;
-        ArrayList<Generation> Generacion = new ArrayList<Generation >();
+        ArrayList<Generation> Generacion = new ArrayList<Generation>();
         int randomnivel, randomlongitud, randomdiametro, randomangulo1,randomangulo2, randomramas1,randomramas2, randomDecL1, randomDecL2, randomDecD1, randomDecD2, maxFitness;
         Random randBuilder = new Random();
         ArrayList<Generation> MatrizIndividuos;
@@ -107,18 +107,18 @@ public class GeneticAlgorithm {
         this.diffcrecimientoD=(int)ranDecrecimientoD[1]-(int)ranDecrecimientoD[0];
         this.diffcrecimientoL=(int)ranDecrecimientoL[1]-(int)ranDecrecimientoL[0];
         for(int i =0; i<this.generationsize;i++){
-            randomnivel = randBuilder.nextInt(ranProfundidad[1]-ranProfundidad[0])+ranProfundidad[0];
-            randomlongitud = randBuilder.nextInt((int)ranLongitud[1]-(int)ranLongitud[0])+(int)ranLongitud[0];
-            randomdiametro = randBuilder.nextInt((int)ranDiametro[1]-(int)ranDiametro[0])+(int)ranDiametro[0];
-            randomangulo1 = randBuilder.nextInt((int)ranAngulos[1]-(int)ranAngulos[0])+(int)ranAngulos[0];
-            randomramas1 = randBuilder.nextInt((int)ranRamas[1]-(int)ranRamas[0])+(int)ranRamas[0];
-            randomDecL1 = randBuilder.nextInt((int)ranDecrecimientoL[1]-(int)ranDecrecimientoL[0])+(int)ranDecrecimientoL[0];
-            randomDecD1 = randBuilder.nextInt((int)ranDecrecimientoD[1]-(int)ranDecrecimientoD[0])+(int)ranDecrecimientoD[0];
+            randomnivel = randBuilder.nextInt((ranProfundidad[1]-ranProfundidad[0])+1)+ranProfundidad[0];
+            randomlongitud = randBuilder.nextInt(((int)ranLongitud[1]-(int)ranLongitud[0])+1)+(int)ranLongitud[0];
+            randomdiametro = randBuilder.nextInt(((int)ranDiametro[1]-(int)ranDiametro[0])+1)+(int)ranDiametro[0];
+            randomangulo1 = randBuilder.nextInt(((int)ranAngulos[1]-(int)ranAngulos[0])+1)+(int)ranAngulos[0];
+            randomramas1 = randBuilder.nextInt(((int)ranRamas[1]-(int)ranRamas[0])+1)+(int)ranRamas[0];
+            randomDecL1 = randBuilder.nextInt(((int)ranDecrecimientoL[1]-(int)ranDecrecimientoL[0])+1)+(int)ranDecrecimientoL[0];
+            randomDecD1 = randBuilder.nextInt(((int)ranDecrecimientoD[1]-(int)ranDecrecimientoD[0])+1)+(int)ranDecrecimientoD[0];
             
-            randomangulo2 = MaxRange6(randomangulo1, this.diffangulo);
-            randomramas2 = MaxRange3(randomramas1, this.difframas);
-            randomDecL2 =  MaxRange6(randomDecL1, this.diffcrecimientoL);
-            randomDecD2 = MaxRange6(randomDecD1, this.diffcrecimientoD);
+            randomangulo2 = randBuilder.nextInt(((int)ranAngulos[1]-randomangulo1)+1)+randomangulo1;
+            randomramas2 = randBuilder.nextInt(((int)ranRamas[1]-randomramas1)+1)+randomramas1;
+            randomDecL2 =  randBuilder.nextInt(((int)ranDecrecimientoL[1]-randomDecL1)+1)+randomDecL1;
+            randomDecD2 = randBuilder.nextInt(((int)ranDecrecimientoD[1]-randomDecD1)+1)+randomDecD1;
             
             
             Tree1 = new Fractal(randomnivel, new double[] {randomDecL1,randomDecL2} ,randomlongitud,new double[]{randomDecD1,randomDecD2}, randomdiametro,new double[] {randomangulo1,randomangulo2},new int[] {randomramas1,randomramas2});
@@ -127,10 +127,8 @@ public class GeneticAlgorithm {
         for(int j=0; j<this.totalGenerations;j++){
             
             //fitness CON GENERACIÓN
-            Generacion.get(0).Tree.pintar();
-             Generacion.get(0).Tree.Fitness(this.url) ;
             maxFitness=0;
-            for(int i=1; i<this.generationsize; i++){
+            for(int i=0; i<this.generationsize; i++){
                 Generacion.get(i).Tree.pintar();
                 double currentNota = Generacion.get(i).Tree.Fitness(this.url);
                 if(currentNota > 0){
@@ -180,7 +178,7 @@ public class GeneticAlgorithm {
             //System.out.println("Binartio1: "+sty.substring(4,sty.length()));
             int indicedemutacion = this.mutationindex;
 
-            MatrizIndividuos = new ArrayList<Generation >();
+            MatrizIndividuos = new ArrayList<Generation>();
 
             BinaryPair NewPareja;
             for(int i =0; i<Generacion.size();i=i+2){ //cambiar a  aletorio
@@ -199,7 +197,7 @@ public class GeneticAlgorithm {
                 //System.out.println(Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(0, 3),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(3, 9),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(9, 13),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(13, 19),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(19, 23),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(23, 29),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(29, 32),2));  
                 //cambiar a  aletorio
             }
-
+            CandidatosCruce.clear();
             //cambiar bits indice de mutación
             int mutationnum=indicedemutacion;
             int row, column;
@@ -215,10 +213,10 @@ public class GeneticAlgorithm {
                 //System.out.println(row+", "+column);
             }
             //System.out.println(Integer.parseInt(MatrizIndividuos.get(0).substring(0, 3),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(3, 9),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(9, 13),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(13, 19),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(19, 23),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(23, 29),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(29, 32),2));  
-
-            for(int i =0; i<Generacion.size();i=i+2){ 
+            Generacion.clear();
+            for(int i =0; i<MatrizIndividuos.size();i++){ 
                 MatrizIndividuos.get(i).setTree(BinaryToTree(MatrizIndividuos.get(i).getChromosome().toString()));
-                Generacion.set(i, MatrizIndividuos.get(i));
+                Generacion.add(MatrizIndividuos.get(i));
             }
         }
         
