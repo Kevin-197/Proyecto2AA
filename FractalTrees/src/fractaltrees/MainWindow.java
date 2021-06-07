@@ -101,6 +101,7 @@ public class MainWindow extends javax.swing.JFrame {
         resDiametro = new javax.swing.JLabel();
         resDDiametro = new javax.swing.JLabel();
         resChromosome1 = new javax.swing.JLabel();
+        runtime = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -290,7 +291,7 @@ public class MainWindow extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Tiempo de ejecución:");
-        CheckGenerations.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 180, 30));
+        CheckGenerations.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 140, 30));
 
         resDLongitud.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         resDLongitud.setForeground(new java.awt.Color(255, 255, 255));
@@ -394,6 +395,11 @@ public class MainWindow extends javax.swing.JFrame {
         resChromosome1.setForeground(new java.awt.Color(255, 255, 255));
         resChromosome1.setText("prueba");
         CheckGenerations.add(resChromosome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 300, 30));
+
+        runtime.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        runtime.setForeground(new java.awt.Color(255, 255, 255));
+        runtime.setText("prueba");
+        CheckGenerations.add(runtime, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 90, 30));
 
         CardPanel.add(CheckGenerations, "card2");
 
@@ -575,6 +581,9 @@ public class MainWindow extends javax.swing.JFrame {
         
         
             GeneticAlgorithm Genetico = new GeneticAlgorithm(Integer.parseInt(this.genMutationField.getText()), Integer.parseInt(this.genindividuoField.getText()), Integer.parseInt(this.genTotalField.getText()), this.urlLabel.getText());
+        long btS = System.currentTimeMillis();
+        
+        
         try {
             this.BestArray= Genetico.run(
                     Stream.of(this.genRamasField.getText().split("\\D+")).mapToInt(Integer::parseInt).toArray(),
@@ -588,6 +597,8 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
+        long btF = System.currentTimeMillis();
+        this.runtime.setText(" "+(btF - btS)+" ms");
         Vector comboBoxItems=new Vector();
     
         for(int i=1;i<=this.BestArray.size(); i++ ){
@@ -826,6 +837,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel resNiveles;
     private javax.swing.JLabel resRamas;
     private javax.swing.JLabel resResultado;
+    private javax.swing.JLabel runtime;
     private javax.swing.ButtonGroup shiftTrees;
     private javax.swing.JFileChooser silhouetteChooser;
     private javax.swing.JInternalFrame silhouetteFrame;
