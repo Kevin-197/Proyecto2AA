@@ -357,8 +357,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         resResultado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         resResultado.setForeground(new java.awt.Color(255, 255, 255));
-        resResultado.setText("11001000011111011001101001101100");
-        CheckGenerations.add(resResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 300, 30));
+        resResultado.setText("prueba");
+        CheckGenerations.add(resResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, 250, 30));
 
         resNiveles.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         resNiveles.setForeground(new java.awt.Color(255, 255, 255));
@@ -392,7 +392,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         resChromosome1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         resChromosome1.setForeground(new java.awt.Color(255, 255, 255));
-        resChromosome1.setText("11001000011111011001101001101100");
+        resChromosome1.setText("prueba");
         CheckGenerations.add(resChromosome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 300, 30));
 
         CardPanel.add(CheckGenerations, "card2");
@@ -595,8 +595,11 @@ public class MainWindow extends javax.swing.JFrame {
         }
         final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
         this.generationCbox.setModel(model);
+        this.generationCbox.setSelectedIndex(0);
         this.MainRadioButton.setSelected(true);
+        
         SetMain();
+        disablefamily();
         CardLayout escenarios = (CardLayout)CardPanel.getLayout();
         escenarios.show(CardPanel,"card2" );
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -615,14 +618,30 @@ public class MainWindow extends javax.swing.JFrame {
     private void silhouetteChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_silhouetteChooserActionPerformed
         // TODO add your handling code here:
         this.silhouetteFrame.setVisible(false);
-         this.urlLabel.setText(this.silhouetteChooser.getSelectedFile().getAbsolutePath());
+         this.urlLabel.setText(this.silhouetteChooser.getSelectedFile().getName());
     }//GEN-LAST:event_silhouetteChooserActionPerformed
+    private void disablefamily() {                                               
+        // TODO add your handling code here:
 
+        if(this.currentlyShowing !=0){
+            this.parent1RadioButton.setEnabled(true);
+            this.parent2RadioButton.setEnabled(true);
+        }else{
+            this.parent1RadioButton.setEnabled(false);
+            this.parent2RadioButton.setEnabled(false);
+        }
+
+       
+        //this.jLabel10.setText(""+value);
+    }   
+    
     private void generationCboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generationCboxActionPerformed
         // TODO add your handling code here:
         this.currentlyShowing = this.generationCbox.getSelectedIndex();
         
         this.MainRadioButton.setSelected(true);
+        disablefamily();
+        System.out.println(this.currentlyShowing);
         SetMain();
        
         //this.jLabel10.setText(""+value);
@@ -635,13 +654,18 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void parent1RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parent1RadioButtonActionPerformed
         // TODO add your handling code here:
+        
+        
         this.TreeContainer2.removeAll();
         this.TreeContainer2.revalidate();
         this.TreeContainer2.repaint();
         this.TreeContainer2.add(this.BestArray.get(this.currentlyShowing).getParent1());
         this.TreeContainer2.setVisible(true);
         
-        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getParent1c().toString());
+        System.out.println(this.BestArray.get(this.currentlyShowing).getParent1c().toString());
+        
+     
+        this.resChromosome1.setText(this.BestArray.get(this.currentlyShowing).getParent1c().toString());
         this.resAngulo.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getAngulo()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[1]);
         this.resRamas.setText(this.BestArray.get(this.currentlyShowing).getParent1().getRamas()[0]+","+this.BestArray.get(this.currentlyShowing).getTree().getRamas()[1]);
         this.resNiveles.setText(this.BestArray.get(this.currentlyShowing).getParent1().getNivel()+"");
@@ -661,8 +685,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.TreeContainer2.add(this.BestArray.get(this.currentlyShowing).getParent2());
         this.TreeContainer2.setVisible(true);
         
-        
-        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getParent2c().toString());
+        this.resChromosome1.setText(this.BestArray.get(this.currentlyShowing).getParent2c().toString());
         this.resAngulo.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getAngulo()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[1]);
         this.resRamas.setText(this.BestArray.get(this.currentlyShowing).getParent2().getRamas()[0]+","+this.BestArray.get(this.currentlyShowing).getTree().getRamas()[1]);
         this.resNiveles.setText(this.BestArray.get(this.currentlyShowing).getParent2().getNivel()+"");
@@ -681,8 +704,8 @@ public class MainWindow extends javax.swing.JFrame {
         this.TreeContainer2.add(this.BestArray.get(this.currentlyShowing).getTree());
         this.TreeContainer2.setVisible(true);
         
-        
-        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getChromosome().toString());
+
+        this.resChromosome1.setText(this.BestArray.get(this.currentlyShowing).getChromosome().toString());
         this.resAngulo.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[1]);
         this.resRamas.setText(this.BestArray.get(this.currentlyShowing).getTree().getRamas()[0]+","+this.BestArray.get(this.currentlyShowing).getTree().getRamas()[1]);
         this.resNiveles.setText(this.BestArray.get(this.currentlyShowing).getTree().getNivel()+"");
