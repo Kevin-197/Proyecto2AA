@@ -51,7 +51,7 @@ public class GeneticAlgorithm {
 
        Random ran = (new Random());
        breaklimit = ran.nextInt(cromosoma1.length()-2)+1;
-       System.out.println(" Pivot: "+breaklimit);
+       //System.out.println(" Pivot: "+breaklimit);
        return new BinaryPair(cromosoma1.substring(0, breaklimit)+cromosoma2.substring(breaklimit,cromosoma2.length() ), cromosoma2.substring(0, breaklimit)+cromosoma1.substring(breaklimit,cromosoma1.length() ));
     }
     
@@ -92,7 +92,7 @@ public class GeneticAlgorithm {
         String binario2 =  Integer.toBinaryString(cromosoma2);
         System.out.println("Binartio1: "+binario1+" Bin 2: "+ binario2);
         */
-        System.out.println("url: "+this.url);
+        //System.out.println("url: "+this.url);
         Fractal Tree1;
         ArrayList<Generation> Generacion = new ArrayList<Generation>();
         int randomnivel, randomlongitud, randomdiametro, randomangulo1,randomangulo2, randomramas1,randomramas2, randomDecL1, randomDecL2, randomDecD1, randomDecD2, maxFitness;
@@ -144,19 +144,19 @@ public class GeneticAlgorithm {
             
             //Extraer el mejor y ponerlo en bestGeneration
             BestPicks.add(Generacion.get(maxFitness));
-            if(Generacion.get(maxFitness).getTree().getNota()>7000){
+            if(Generacion.get(maxFitness).getTree().getNota()>10000 || Generacion.get(maxFitness).getTree().getNota()<=0){
                 break;
             }
             
             //normalizar notas y hacer selección de individuo aleatorio según notas normalizadas
-            System.out.println("Total "+TotalNotas);
+            //System.out.println("Total "+TotalNotas);
             for (int i = 0; i < this.generationsize; i++) {
-                System.out.println("Nota  "+Generacion.get(i).Tree.getNota());
+                //System.out.println("Nota  "+Generacion.get(i).Tree.getNota());
                 double currentNotaN = ((Generacion.get(i).Tree.getNota())*100)/TotalNotas;
-                System.out.println(currentNotaN);
+                //System.out.println(currentNotaN);
                 NotasNormalizadas.add(i,currentNotaN);
             }
-            System.out.println("==================================");
+            //System.out.println("==================================");
             for (int i = 0; i < NotasNormalizadas.size(); i++) {
                 double random = Math.random();
                 double prop = 0;
@@ -198,7 +198,7 @@ public class GeneticAlgorithm {
                 MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual1Chromosome()),new StringBuilder(c1), new StringBuilder(c2), CandidatosCruce.get(i), CandidatosCruce.get(i+1) ) ); 
                //cambiar a  aletorio
                 MatrizIndividuos.add(new Generation(new StringBuilder(NewPareja.getNewIndividual2Chromosome()),new StringBuilder(c1), new StringBuilder(c2), CandidatosCruce.get(i), CandidatosCruce.get(i+1) ) ); 
-                System.out.println("c1: "+new StringBuilder(c1).toString()+"   c2: "+new StringBuilder(c1).toString());
+                //System.out.println("c1: "+new StringBuilder(c1).toString()+"   c2: "+new StringBuilder(c1).toString());
                 //System.out.println(Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(0, 3),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(3, 9),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(9, 13),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(13, 19),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(19, 23),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(23, 29),2)+","+Integer.parseInt(NewPareja.getNewIndividual1Chromosome().substring(29, 32),2));  
                 //cambiar a  aletorio
             }
@@ -215,7 +215,7 @@ public class GeneticAlgorithm {
                 else
                     MatrizIndividuos.get(row).getChromosome().setCharAt(column, '1');
                 mutationnum--;
-                System.out.println("Mutation: "+row+", "+column);
+                //System.out.println("Mutation: "+row+", "+column);
             }
             //System.out.println(Integer.parseInt(MatrizIndividuos.get(0).substring(0, 3),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(3, 9),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(9, 13),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(13, 19),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(19, 23),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(23, 29),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(29, 32),2));  
             Generacion.clear();

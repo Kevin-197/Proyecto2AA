@@ -652,7 +652,7 @@ public class MainWindow extends javax.swing.JFrame {
         
         this.MainRadioButton.setSelected(true);
         disablefamily();
-        System.out.println(this.currentlyShowing);
+        //System.out.println(this.currentlyShowing);
         SetMain();
        
         //this.jLabel10.setText(""+value);
@@ -673,7 +673,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.TreeContainer2.add(this.BestArray.get(this.currentlyShowing).getParent1());
         this.TreeContainer2.setVisible(true);
         
-        System.out.println(this.BestArray.get(this.currentlyShowing).getParent1c().toString());
+        //System.out.println(this.BestArray.get(this.currentlyShowing).getParent1c().toString());
         
      
         this.resChromosome1.setText(this.BestArray.get(this.currentlyShowing).getParent1c().toString());

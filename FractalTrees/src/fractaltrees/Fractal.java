@@ -160,7 +160,7 @@ public class Fractal extends JComponent {
                     nota = nota +3;
                 }else if(color1!=Color.WHITE.getRGB() && color2==Color.WHITE.getRGB()){
 //                    System.out.println("diferentes2");
-                    nota= nota-2;
+                    nota= nota-1;
                 }
             }
         }
