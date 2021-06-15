@@ -24,7 +24,9 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     private int currentlyShowing;
+    private int currentIndividual;
     private ArrayList<Generation> BestArray;
+    private  ArrayList<ArrayList<Generation> > allArray;
     public MainWindow() {
         initComponents();
         /*
@@ -102,6 +104,7 @@ public class MainWindow extends javax.swing.JFrame {
         resDDiametro = new javax.swing.JLabel();
         resChromosome1 = new javax.swing.JLabel();
         runtime = new javax.swing.JLabel();
+        checktreeCbox = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -401,6 +404,14 @@ public class MainWindow extends javax.swing.JFrame {
         runtime.setText("prueba");
         CheckGenerations.add(runtime, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, 90, 30));
 
+        checktreeCbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        checktreeCbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checktreeCboxActionPerformed(evt);
+            }
+        });
+        CheckGenerations.add(checktreeCbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 120, 80, 30));
+
         CardPanel.add(CheckGenerations, "card2");
 
         jPanel1.add(CardPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1140, 670));
@@ -597,16 +608,36 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         long btF = System.currentTimeMillis();
         this.runtime.setText(" "+(btF - btS)+" ms");
+        this.allArray = Genetico.getHistory();
+        
+        
         Vector comboBoxItems=new Vector();
     
         for(int i=1;i<=this.BestArray.size(); i++ ){
             comboBoxItems.add("Generación "+i);
         }
+        
         final DefaultComboBoxModel model = new DefaultComboBoxModel(comboBoxItems);
         this.generationCbox.setModel(model);
+        
+        
+        
+        Vector comboBox2Items=new Vector();
+        comboBox2Items.add("Mejor");
+        for(int i=1;i<=Integer.parseInt(this.genindividuoField.getText()); i++ ){
+            comboBox2Items.add(i);
+        }
+        
+        final DefaultComboBoxModel model2 = new DefaultComboBoxModel(comboBox2Items);
+        this.checktreeCbox.setModel(model2);
+        this.currentIndividual = 0;
+        
+        
         this.generationCbox.setSelectedIndex(0);
+        this.checktreeCbox.setSelectedIndex(0);
         this.MainRadioButton.setSelected(true);
         
         SetMain();
@@ -654,6 +685,7 @@ public class MainWindow extends javax.swing.JFrame {
         disablefamily();
         //System.out.println(this.currentlyShowing);
         SetMain();
+        this.checktreeCbox.setSelectedIndex(0);
        
         //this.jLabel10.setText(""+value);
     }//GEN-LAST:event_generationCboxActionPerformed
@@ -665,66 +697,96 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void parent1RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parent1RadioButtonActionPerformed
         // TODO add your handling code here:
-        
+        Generation TreetoShow;
+        if(this.checktreeCbox.getSelectedIndex() != 0){
+            TreetoShow = this.allArray.get(this.currentlyShowing).get(this.checktreeCbox.getSelectedIndex()-1);
+        }else{
+            TreetoShow = this.BestArray.get(this.currentlyShowing);
+        }
         
         this.TreeContainer2.removeAll();
         this.TreeContainer2.revalidate();
         this.TreeContainer2.repaint();
-        this.TreeContainer2.add(this.BestArray.get(this.currentlyShowing).getParent1());
+        this.TreeContainer2.add(TreetoShow.getParent1());
         this.TreeContainer2.setVisible(true);
         
         //System.out.println(this.BestArray.get(this.currentlyShowing).getParent1c().toString());
         
      
-        this.resChromosome1.setText(this.BestArray.get(this.currentlyShowing).getParent1c().toString());
-        this.resAngulo.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getAngulo()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[1]);
-        this.resRamas.setText(this.BestArray.get(this.currentlyShowing).getParent1().getRamas()[0]+","+this.BestArray.get(this.currentlyShowing).getTree().getRamas()[1]);
-        this.resNiveles.setText(this.BestArray.get(this.currentlyShowing).getParent1().getNivel()+"");
-        this.resLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getLongitud()+"");
-        this.resDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getDiametro()+"");
-        this.resDLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getDecrecimientoL()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoL()[1]);
-        this.resDDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getParent1().getDecrecimientoD()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoD()[1]);
-        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getParent1().getNota()+"");
+        this.resChromosome1.setText(TreetoShow.getParent1c().toString());
+        this.resAngulo.setText((int)TreetoShow.getParent1().getAngulo()[0]+","+(int)TreetoShow.getParent1().getAngulo()[1]);
+        this.resRamas.setText(TreetoShow.getParent1().getRamas()[0]+","+TreetoShow.getParent1().getRamas()[1]);
+        this.resNiveles.setText(TreetoShow.getParent1().getNivel()+"");
+        this.resLongitud.setText((int)TreetoShow.getParent1().getLongitud()+"");
+        this.resDiametro.setText((int)TreetoShow.getParent1().getDiametro()+"");
+        this.resDLongitud.setText((int)TreetoShow.getParent1().getDecrecimientoL()[0]+","+(int)TreetoShow.getParent1().getDecrecimientoL()[1]);
+        this.resDDiametro.setText((int)TreetoShow.getParent1().getDecrecimientoD()[0]+","+(int)TreetoShow.getParent1().getDecrecimientoD()[1]);
+        this.resResultado.setText(TreetoShow.getParent1().getNota()+"");
         
     }//GEN-LAST:event_parent1RadioButtonActionPerformed
 
     private void parent2RadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_parent2RadioButtonActionPerformed
         // TODO add your handling code here:
+        
+        Generation TreetoShow;
+        if(this.checktreeCbox.getSelectedIndex() != 0){
+            TreetoShow = this.allArray.get(this.currentlyShowing).get(this.checktreeCbox.getSelectedIndex()-1);
+        }else{
+            TreetoShow = this.BestArray.get(this.currentlyShowing);
+        }
+        
         this.TreeContainer2.removeAll();
         this.TreeContainer2.revalidate();
         this.TreeContainer2.repaint();
-        this.TreeContainer2.add(this.BestArray.get(this.currentlyShowing).getParent2());
+        this.TreeContainer2.add(TreetoShow.getParent2());
         this.TreeContainer2.setVisible(true);
         
-        this.resChromosome1.setText(this.BestArray.get(this.currentlyShowing).getParent2c().toString());
-        this.resAngulo.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getAngulo()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[1]);
-        this.resRamas.setText(this.BestArray.get(this.currentlyShowing).getParent2().getRamas()[0]+","+this.BestArray.get(this.currentlyShowing).getTree().getRamas()[1]);
-        this.resNiveles.setText(this.BestArray.get(this.currentlyShowing).getParent2().getNivel()+"");
-        this.resLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getLongitud()+"");
-        this.resDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getDiametro()+"");
-        this.resDLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getDecrecimientoL()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoL()[1]);
-        this.resDDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getParent2().getDecrecimientoD()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoD()[1]);
-        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getParent2().getNota()+"");
+        this.resChromosome1.setText(TreetoShow.getParent2c().toString());
+        this.resAngulo.setText((int)TreetoShow.getParent2().getAngulo()[0]+","+(int)TreetoShow.getParent2().getAngulo()[1]);
+        this.resRamas.setText(TreetoShow.getParent2().getRamas()[0]+","+TreetoShow.getParent2().getRamas()[1]);
+        this.resNiveles.setText(TreetoShow.getParent2().getNivel()+"");
+        this.resLongitud.setText((int)TreetoShow.getParent2().getLongitud()+"");
+        this.resDiametro.setText((int)TreetoShow.getParent2().getDiametro()+"");
+        this.resDLongitud.setText((int)TreetoShow.getParent2().getDecrecimientoL()[0]+","+(int)TreetoShow.getParent2().getDecrecimientoL()[1]);
+        this.resDDiametro.setText((int)TreetoShow.getParent2().getDecrecimientoD()[0]+","+(int)TreetoShow.getParent2().getDecrecimientoD()[1]);
+        this.resResultado.setText(TreetoShow.getParent2().getNota()+"");
     }//GEN-LAST:event_parent2RadioButtonActionPerformed
+
+    private void checktreeCboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checktreeCboxActionPerformed
+        // TODO add your handling code here:
+        this.currentlyShowing = this.generationCbox.getSelectedIndex();
+        
+        this.MainRadioButton.setSelected(true);
+        disablefamily();
+        //System.out.println(this.currentlyShowing);
+        SetMain();
+    }//GEN-LAST:event_checktreeCboxActionPerformed
 
     private void SetMain() {                                                   
         // TODO add your handling code here:
+        Generation TreetoShow;
+        if(this.checktreeCbox.getSelectedIndex() != 0){
+            TreetoShow = this.allArray.get(this.currentlyShowing).get(this.checktreeCbox.getSelectedIndex()-1);
+        }else{
+            TreetoShow = this.BestArray.get(this.currentlyShowing);
+        }
+        
         this.TreeContainer2.removeAll();
         this.TreeContainer2.revalidate();
         this.TreeContainer2.repaint();
-        this.TreeContainer2.add(this.BestArray.get(this.currentlyShowing).getTree());
+        this.TreeContainer2.add(TreetoShow.getTree());
         this.TreeContainer2.setVisible(true);
         
 
-        this.resChromosome1.setText(this.BestArray.get(this.currentlyShowing).getChromosome().toString());
-        this.resAngulo.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getAngulo()[1]);
-        this.resRamas.setText(this.BestArray.get(this.currentlyShowing).getTree().getRamas()[0]+","+this.BestArray.get(this.currentlyShowing).getTree().getRamas()[1]);
-        this.resNiveles.setText(this.BestArray.get(this.currentlyShowing).getTree().getNivel()+"");
-        this.resLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getLongitud()+"");
-        this.resDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getDiametro()+"");
-        this.resDLongitud.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoL()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoL()[1]);
-        this.resDDiametro.setText((int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoD()[0]+","+(int)this.BestArray.get(this.currentlyShowing).getTree().getDecrecimientoD()[1]);
-        this.resResultado.setText(this.BestArray.get(this.currentlyShowing).getTree().getNota()+"");
+        this.resChromosome1.setText(TreetoShow.getChromosome().toString());
+        this.resAngulo.setText((int)TreetoShow.getTree().getAngulo()[0]+","+(int)TreetoShow.getTree().getAngulo()[1]);
+        this.resRamas.setText(TreetoShow.getTree().getRamas()[0]+","+TreetoShow.getTree().getRamas()[1]);
+        this.resNiveles.setText(TreetoShow.getTree().getNivel()+"");
+        this.resLongitud.setText((int)TreetoShow.getTree().getLongitud()+"");
+        this.resDiametro.setText((int)TreetoShow.getTree().getDiametro()+"");
+        this.resDLongitud.setText((int)TreetoShow.getTree().getDecrecimientoL()[0]+","+(int)TreetoShow.getTree().getDecrecimientoL()[1]);
+        this.resDDiametro.setText((int)TreetoShow.getTree().getDecrecimientoD()[0]+","+(int)TreetoShow.getTree().getDecrecimientoD()[1]);
+        this.resResultado.setText(TreetoShow.getTree().getNota()+"");
     }                                                  
 
     /**
@@ -771,6 +833,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton VolverButton;
     private javax.swing.JTextField anguloField;
     private javax.swing.JLabel backgroundLabel;
+    private javax.swing.JComboBox<String> checktreeCbox;
     private javax.swing.JTextField decrementoDField;
     private javax.swing.JTextField decrementoLField;
     private javax.swing.JTextField diametroField;

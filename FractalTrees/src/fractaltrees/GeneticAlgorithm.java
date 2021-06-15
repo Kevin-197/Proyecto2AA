@@ -24,8 +24,10 @@ public class GeneticAlgorithm {
     private int diffangulo;
     private int difframas;
     private ArrayList<Generation> bestGeneration;
+    private  ArrayList<ArrayList<Generation> > history;
 
     public GeneticAlgorithm(int mutationindex, int generationsize, int totalGenerations, String url) {
+        this.history = new ArrayList<ArrayList<Generation>>() ;
         this.mutationindex = mutationindex;
         this.generationsize = generationsize;
         this.totalGenerations = totalGenerations;
@@ -67,6 +69,11 @@ public class GeneticAlgorithm {
                new int[] {Integer.parseInt(toConvert.substring(29, 32),2),MaxRange3(Integer.parseInt(toConvert.substring(29, 32),2),this.difframas)});
 
     }
+
+    public ArrayList<ArrayList<Generation>> getHistory() {
+        return history;
+    }
+    
     public String TreeToBinary(Fractal toConvert){
         /*
         
@@ -95,6 +102,7 @@ public class GeneticAlgorithm {
         //System.out.println("url: "+this.url);
         Fractal Tree1;
         ArrayList<Generation> Generacion = new ArrayList<Generation>();
+        
         int randomnivel, randomlongitud, randomdiametro, randomangulo1,randomangulo2, randomramas1,randomramas2, randomDecL1, randomDecL2, randomDecD1, randomDecD2, maxFitness;
         Random randBuilder = new Random();
         ArrayList<Generation> MatrizIndividuos;
@@ -124,6 +132,7 @@ public class GeneticAlgorithm {
             Tree1 = new Fractal(randomnivel, new double[] {randomDecL1,randomDecL2} ,randomlongitud,new double[]{randomDecD1,randomDecD2}, randomdiametro,new double[] {randomangulo1,randomangulo2},new int[] {randomramas1,randomramas2});
             Generacion.add(new Generation(Tree1, new StringBuilder(TreeToBinary(Tree1))));
         }
+        
         for(int j=0; j<this.totalGenerations;j++){
             
             //fitness CON GENERACIÓN
@@ -144,6 +153,9 @@ public class GeneticAlgorithm {
             
             //Extraer el mejor y ponerlo en bestGeneration
             BestPicks.add(Generacion.get(maxFitness));
+            
+            this.history.add(Generacion);
+            
             if(Generacion.get(maxFitness).getTree().getNota()>10000 || Generacion.get(maxFitness).getTree().getNota()<=0){
                 break;
             }
@@ -218,10 +230,15 @@ public class GeneticAlgorithm {
                 //System.out.println("Mutation: "+row+", "+column);
             }
             //System.out.println(Integer.parseInt(MatrizIndividuos.get(0).substring(0, 3),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(3, 9),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(9, 13),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(13, 19),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(19, 23),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(23, 29),2)+","+Integer.parseInt(MatrizIndividuos.get(0).substring(29, 32),2));  
-            Generacion.clear();
+            
+            //Generacion.clear();
+            
+            
+            Generacion = new ArrayList<Generation>();
             for(int i =0; i<MatrizIndividuos.size();i++){ 
                 MatrizIndividuos.get(i).setTree(BinaryToTree(MatrizIndividuos.get(i).getChromosome().toString()));
                 Generacion.add(MatrizIndividuos.get(i));
+                //Generacion.set(i, MatrizIndividuos.get(i));
             }
         }
         
